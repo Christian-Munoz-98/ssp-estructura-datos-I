@@ -19,36 +19,23 @@ class Savings
         dBalance += dAmount;
         return dBalance;
     }
-    
-    // withdraw - execute a withdrawal if sufficient funds
-    //            are available
-    double withdraw(double dAmount)
-    {
-        if (dBalance < dAmount)
-        {
-            return 0.0;
-        }
-        dBalance -= dAmount;
-        return dBalance;
-    }
 };
 
-/*
-void fn()
+// this part appears in a separate Savings.cpp file
+double Savings::deposit(double dAmount)
 {
-    Savings s;
-    s.nAccountNumber = 0;
-    s.dBalance = 0.0;
+    dBalance += dAmount;
+    return dBalance;
 }
-*/
 
 void fn()
 {
-    // create and initialize an object s
-    Savings s = {0, 0.0};
-    // now make a deposit of $100
-    s.deposit(100.0);
-    // or a withdrawal
-    s.withdraw(50.0);
+    // create and initialize two objects
+    Savings s1 = {0, 0.0};
+    Savings s2 = {1, 0.0};
+    // now make a deposit of $100 to one account
+    s1.deposit(100.0);
+    // and then the other
+    s2.deposit(50.0);
 }
 
