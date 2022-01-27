@@ -4,24 +4,10 @@ class Savings
  public:
     int nAccountNumber;
     double dBalance;
-    
-    // deposit - deposit an amount to the balance;
-    //           deposits must be positive number; return
-    //            the resulting balance or zero on error
-    double deposit(double dAmount)
-    {
-        // no negative deposits - that's a withdrawal
-        if (dAmount < 0)
-        {
-            return 0.0;
-        }
-        // okay - add to the balance and return the total
-        dBalance += dAmount;
-        return dBalance;
-    }
+
+    double deposit(double dAmount);
 };
 
-// this part appears in a separate Savings.cpp file
 double Savings::deposit(double dAmount)
 {
     dBalance += dAmount;
