@@ -9,17 +9,9 @@ string dec_to_hex(int);
 int main(){
     system("CLS");
     cout << "Conversor Decimal a Hexadecimal" << endl;
-<<<<<<< HEAD
-    for(int i=0;i<=1000000;i++){
+    for(int i=0;i<=100;i++){
         cout << i << " = " << dec_to_hex(i)<< endl;
     }
-=======
-    cout << "Digite un número: ";
-    cin >> num;
-    cout <<num;
-    numptr = &num;
-    cout <<" = " << dec_to_hex(numptr)<< endl;
->>>>>>> main
     system("PAUSE");
 }
 
