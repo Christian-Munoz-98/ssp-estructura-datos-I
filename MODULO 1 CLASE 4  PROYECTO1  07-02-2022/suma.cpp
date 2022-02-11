@@ -25,3 +25,4 @@ int suma(int* n1, int* n2){
 	return res;
 }
 //este comentario es para probar la seguridad de mi github
+//Ptm quepedo
