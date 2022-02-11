@@ -4,29 +4,26 @@
 
 using namespace std;
 
-string dec_to_hex(int*);
+string dec_to_hex(int);
 
 int main(){
     system("CLS");
-    int num;
-    int* numptr = NULL;
     cout << "Conversor Decimal a Hexadecimal" << endl;
-    cout << "Digite un número: ";
-    cin >> num;
-    numptr = &num;
-    cout << *numptr << " = " << dec_to_hex(numptr)<< endl;
+    for(int i=0;i<=1000000;i++){
+        cout << i << " = " << dec_to_hex(i)<< endl;
+    }
     system("PAUSE");
 }
 
-string dec_to_hex(int* val){
+string dec_to_hex(int val){
     string decode= "0123456789ABCDEF";
     string hex = "";
 
-    while (*val>15)
+    while (val>15)
     {
-        hex = decode[*val%16] + hex;
-        *val /= 16;
+        hex = decode[val%16] + hex;
+        val /= 16;
     }
-    hex = decode[*val] + hex;
+    hex = decode[val] + hex;
     return hex;
 }
