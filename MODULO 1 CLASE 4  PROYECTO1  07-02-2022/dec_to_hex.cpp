@@ -13,8 +13,9 @@ int main(){
     cout << "Conversor Decimal a Hexadecimal" << endl;
     cout << "Digite un número: ";
     cin >> num;
+    cout <<num;
     numptr = &num;
-    cout << *numptr << " = " << dec_to_hex(numptr)<< endl;
+    cout <<" = " << dec_to_hex(numptr)<< endl;
     system("PAUSE");
 }
 
