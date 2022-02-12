@@ -3,6 +3,7 @@
 #include <cmath>
 #include <string>
 #include <cstdlib>
+#include "hex_to_dec.h"
 
 using std::string;
 
@@ -29,7 +30,9 @@ void potencia(double*,double*);
 void factorial(double*);
 string dec_to_bin(int*);
 void bin_to_dec(string,int*);
+//void dec_to_oc(int*);
 string dec_to_hex(int*);
+void hex_to_dec(string,int*);
 
 void suma(double* sumado,double* sumando){
 	*sumado += *sumando;
@@ -111,3 +114,16 @@ string dec_to_hex(int* val){
     hex = decode[*val] + hex;
     return hex;
 }
+
+//hex_to_dec.h
+
+/*void dec_to_oc(int* dec){
+    string oc="";
+    int res;
+    while(*dec/8!=0){
+        res = *dec%8;
+        oc = to_string(res) + oc;
+        *dec/=8;
+    }
+    cout <<
+}*/

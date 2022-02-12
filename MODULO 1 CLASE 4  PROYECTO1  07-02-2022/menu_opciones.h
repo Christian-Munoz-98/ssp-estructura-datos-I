@@ -144,8 +144,11 @@ void Menu(){
             system("pause");
             break;
         
-        case 12:
+        case 12: //hexadecimal a decimal
 
+            system("cls");
+            hex_to_dec_input();
+            system("pause");
             break;
         
         default: 

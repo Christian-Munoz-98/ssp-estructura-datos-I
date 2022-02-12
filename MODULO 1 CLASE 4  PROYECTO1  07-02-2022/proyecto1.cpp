@@ -8,6 +8,7 @@ int main(){
     char opc='1';
     
     do{
+        system("cls");
         Menu();   
         cout << "Presione (0) si desea salir --------> ";
         cin >>opc;    
