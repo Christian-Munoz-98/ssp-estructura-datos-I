@@ -25,7 +25,6 @@ int is_double(string);
 int is_binary(string);
 
 void Menu(){
-    //solo numeros
     int opc;
     
     cout<<"M E N U"<<endl

@@ -7,21 +7,6 @@
 
 using std::string;
 
-/*
-"1)Suma"
-"2)Resta"
-"3)Multiplicacion"
-"4)Division"
-"5)Potencia"
-"6)Factorial"
-"7)Decimal Binario"
-"8)Binario Decimal"
-"9)Decimal Octal"
-"10)Octal Decimal"
-"11)Decimal Hexadecimal"
-"12)Hexadecimal Decimal"
-*/
-
 void suma(double*,double*);
 void resta(double*,double*);
 void multiplicacion(double*,double*);
@@ -115,8 +100,6 @@ string dec_to_hex(int* val){
     hex = decode[*val] + hex;
     return hex;
 }
-
-//hex_to_dec.h
 
 string dec_to_oc(int* dec){
     string oc="";
