@@ -5,18 +5,14 @@ using namespace std;
 
 int main(){
     system("cls");
-    char opc='1';
     
     do{
         system("cls");
-        Menu();   
-        cout << "Presione (0) si desea salir --------> ";
-        cin >>opc;    
-    } while (opc!='0');
+        Menu(); 
+    } while (1);
 
     cout << "HASTA PRONTO..." << endl;
     system("pause");
 
     return 0;
 }
-

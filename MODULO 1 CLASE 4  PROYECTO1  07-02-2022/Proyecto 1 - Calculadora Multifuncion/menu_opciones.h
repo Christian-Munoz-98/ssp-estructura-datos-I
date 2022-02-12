@@ -3,6 +3,7 @@
 #include "operaciones.h"
 #include <stdlib.h>
 #include <string>
+#include <unistd.h>
 
 using namespace std;
 using std::string;
@@ -40,11 +41,15 @@ void Menu(){
     <<"10)Octal a Decimal"<<endl
     <<"11)Decimal a Hexadecimal"<<endl
     <<"12)Hexadecimal a Decimal"<<endl
+    <<"0)Salir"<<endl
     <<"Ingrese una opcion ---->";
     
     cin>>opc;
 
     switch(opc){
+        case 0:
+            sleep(0.5);
+            exit(0);
         case 1: //suma
             do{
                 two_inputs();
