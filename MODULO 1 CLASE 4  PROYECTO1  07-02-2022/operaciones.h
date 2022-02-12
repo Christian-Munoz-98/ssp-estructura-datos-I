@@ -30,7 +30,8 @@ void potencia(double*,double*);
 void factorial(double*);
 string dec_to_bin(int*);
 void bin_to_dec(string,int*);
-//void dec_to_oc(int*);
+string dec_to_oc(int*);
+int oc_to_dec(int*);
 string dec_to_hex(int*);
 void hex_to_dec(string,int*);
 
@@ -117,13 +118,26 @@ string dec_to_hex(int* val){
 
 //hex_to_dec.h
 
-/*void dec_to_oc(int* dec){
+string dec_to_oc(int* dec){
     string oc="";
     int res;
     while(*dec/8!=0){
-        res = *dec%8;
-        oc = to_string(res) + oc;
+        oc = to_string(*dec%8) + oc;
         *dec/=8;
     }
-    cout <<
-}*/
+    oc = to_string(*dec%8) + oc;
+    return oc;
+}
+
+int oc_to_dec(int* oc){
+    int dec=0;
+    int exp=0;
+    while (*oc>=10)
+    {
+        dec += (*oc%10) * pow(8,exp);
+        exp++;
+        *oc /= 10;
+    }
+    dec += *oc * pow(8,exp);
+    return dec;
+}

@@ -125,11 +125,27 @@ void Menu(){
             system("pause");
             break;
         
-        case 9:
+        case 9: // decimal a octal
+
+            system("cls");
+            cout << "Ingrese un numero entero: ";
+            cin >> intin;
+            intinptr = &intin;
+            cout <<intin;
+            cout << " = " << dec_to_oc(intinptr) << endl;
+            system("pause");
 
             break;
         
         case 10:
+
+            system("cls");
+            cout << "Ingrese un numero en notacion octal: ";
+            cin >> intin;
+            intinptr = &intin;
+            cout <<intin;
+            cout << " = " << oc_to_dec(intinptr) << endl;
+            system("pause");
 
             break;
 
