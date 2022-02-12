@@ -10,16 +10,22 @@ using std::string;
 
 double din1, din2, din3;
 double* din1ptr,* din2ptr,* din3ptr;
+bool flag;
 
 int intin;
 int* intinptr;
 
 string strin;
 
+
 void two_inputs();
+int is_digit(string);
+int is_octal(string);
+int is_double(string);
+int is_binary(string);
 
 void Menu(){
-
+    //solo numeros
     int opc;
     
     cout<<"M E N U"<<endl
@@ -41,130 +47,224 @@ void Menu(){
 
     switch(opc){
         case 1: //suma
-            
-            two_inputs();
-            cout<<din1<<" + "<<din2<<" = ";
-            suma(din1ptr,din2ptr);
-            cout<<*din1ptr<<endl;
-            system("pause");    
+            do{
+                two_inputs();
+                if((is_double(to_string(din1))==0)||(is_double(to_string(din2))==0)){
+                    cout << "Solo puede ingresar números." << endl << "intente de nuevo..." << endl;
+                    system("pause");
+                    flag = false;
+                }
+                else{
+                    cout<<din1<<" + "<<din2<<" = ";
+                    suma(din1ptr,din2ptr);
+                    cout<<*din1ptr<<endl;
+                    system("pause");
+                    flag=true;
+                }    
+            }while(!flag);
             break;
 
         case 2: //resta
-            
-            two_inputs();
-            cout<<din1<<" - "<<din2<<" = ";
-            resta(din1ptr,din2ptr);
-            cout<<*din1ptr<<endl;
-            system("pause");
+            do{
+                two_inputs();
+                if((is_double(to_string(din1))==0)||(is_double(to_string(din2))==0)){
+                    cout << "Solo puede ingresar números." << endl << "intente de nuevo..." << endl;
+                    system("pause");
+                    flag = false;
+                }
+                else{
+                    cout<<din1<<" - "<<din2<<" = ";
+                    resta(din1ptr,din2ptr);
+                    cout<<*din1ptr<<endl;
+                    system("pause");
+                    flag=true;
+                }
+            }while(!flag);
             break;
         
         case 3: //multiplicacion
-            
-            two_inputs();
-            cout<<din1<<" * "<<din2<<" = ";
-            multiplicacion(din1ptr,din2ptr);
-            cout<<*din1ptr<<endl;
-            system("pause");
+            do{
+                two_inputs();
+                if((is_double(to_string(din1))==0)||(is_double(to_string(din2))==0)){
+                    cout << "Solo puede ingresar números." << endl << "intente de nuevo..." << endl;
+                    system("pause");
+                    flag = false;
+                }
+                else{
+                    cout<<din1<<" * "<<din2<<" = ";
+                    multiplicacion(din1ptr,din2ptr);
+                    cout<<*din1ptr<<endl;
+                    system("pause");
+                    flag=true;
+                }
+            }while(!flag);
             break;
         
         case 4: //division
-            
-            two_inputs();
-            cout<<din1<<" / "<<din2<<" = ";
-            division(din1ptr,din2ptr);
-            cout<<*din1ptr<<endl;
-            system("pause");
+            do{
+                two_inputs();
+                if((is_double(to_string(din1))==0)||(is_double(to_string(din2))==0)){
+                    cout << "Solo puede ingresar números." << endl << "intente de nuevo..." << endl;
+                    system("pause");
+                    flag = false; 
+                }
+                else{
+                    cout<<din1<<" / "<<din2<<" = ";
+                    division(din1ptr,din2ptr);
+                    cout<<*din1ptr<<endl;
+                    system("pause");
+                    flag=true;
+                }
+            }while(!flag);
             break;
         
         case 5: //potencia
-            
-            system("cls");
-            cout<<"Ingrese la base: ";
-            cin>>din1;
-            din1ptr = &din1;
-            cout<<"Ingrese el exponente: ";
-            cin>>din2;
-            din2ptr = &din2;
-            cout<<din1<<" ^ "<<din2<<" = ";
-            potencia(din1ptr,din2ptr);
-            cout<< std::fixed << *din1ptr<<endl;
-            system("pause");
+            do{
+                system("cls");
+                cout<<"Ingrese la base: ";
+                cin>>din1;
+                din1ptr = &din1;
+                cout<<"Ingrese el exponente: ";
+                cin>>din2;
+                din2ptr = &din2;
+                if((is_double(to_string(din1))==0)||(is_double(to_string(din2))==0)){
+                    cout << "Solo puede ingresar números." << endl << "intente de nuevo..." << endl;
+                    system("pause");
+                    flag = false; 
+                }
+                else{                    
+                    cout<<din1<<" ^ "<<din2<<" = ";
+                    potencia(din1ptr,din2ptr);
+                    cout<< std::fixed << *din1ptr<<endl;
+                    system("pause");
+                    flag = true;
+                }
+            }while(!flag);
             break;
         
         case 6: //facotorial
-
-            system("cls");
-            cout<<"Ingrese el numero: ";
-            cin>>din1;
-            din1ptr = &din1;
-            cout << din1 << "!" << " = ";
-            factorial(din1ptr);
-            cout << std::fixed << *din1ptr<<endl;
-            system("pause");
+            do{
+                system("cls");
+                cout<<"Ingrese el numero: ";
+                cin>>din1;
+                din1ptr = &din1;
+                if(is_double(to_string(din1))==0){
+                    cout << "Solo puede ingresar números." << endl << "intente de nuevo..." << endl;
+                    system("pause");
+                    flag = false; 
+                }
+                else{
+                    cout << din1 << "!" << " = ";
+                    factorial(din1ptr);
+                    cout << std::fixed << *din1ptr<<endl;
+                    system("pause");
+                    flag = true;
+                }
+            }while(!flag);
             break;
 
         case 7: //decimal a binario
-
-            system("cls");
-            cout << "Ingrese un numero entero: ";
-            cin >> intin;
-            intinptr = &intin;
-            cout <<intin;
-            cout <<" = " << dec_to_bin(intinptr)<< endl;
-            system("pause");
+            do{
+                system("cls");
+                cout << "Ingrese un numero entero: ";
+                cin >> intin;
+                intinptr = &intin;
+                if(is_digit(to_string(intin))==0){
+                    cout << "Solo puede ingresar números." << endl << "intente de nuevo..." << endl;
+                    system("pause");
+                    flag = false; 
+                }
+                else{
+                    cout <<intin;
+                    cout <<" = " << dec_to_bin(intinptr)<< endl;
+                    system("pause");
+                    flag = true;
+                }
+            }while(!flag);
             break;
         
-        case 8: // binario a decimal                 
-
-            system("cls");
-            *intinptr=0;
-            cout << "Ingrese una cadena de bits: ";
-            cin >> strin;
-            bin_to_dec(strin,intinptr);
-            cout << strin << " = " << intin << endl;
-            system("pause");
+        case 8: // binario a decimal
+            do{
+                system("cls");
+                *intinptr=0;
+                cout << "Ingrese una cadena de bits: ";
+                cin >> strin;
+                if(is_binary(strin)==0){
+                    cout << "Solo puede ingresar 1s o 0s" << endl << "intente de nuevo..." << endl;
+                    system("pause");
+                    flag = false; 
+                }
+                else{
+                    bin_to_dec(strin,intinptr);
+                    cout << strin << " = " << intin << endl;
+                    system("pause");
+                    flag = true;
+                }
+            }while(!flag);                
             break;
-        
+
         case 9: // decimal a octal
-
-            system("cls");
-            cout << "Ingrese un numero entero: ";
-            cin >> intin;
-            intinptr = &intin;
-            cout <<intin;
-            cout << " = " << dec_to_oc(intinptr) << endl;
-            system("pause");
-
+            do{
+                system("cls");
+                cout << "Ingrese un numero entero: ";
+                cin >> intin;
+                intinptr = &intin;
+                if(is_digit(to_string(intin))==0){
+                    cout << "Solo puede ingresar números." << endl << "intente de nuevo..." << endl;
+                    system("pause");
+                    flag = false; 
+                }
+                else{
+                    cout <<intin;
+                    cout << " = " << dec_to_oc(intinptr) << endl;
+                    system("pause");
+                    flag = true;
+                }
+            }while(!flag);
             break;
-        
-        case 10:
 
-            system("cls");
-            cout << "Ingrese un numero en notacion octal: ";
-            cin >> intin;
-            intinptr = &intin;
-            cout <<intin;
-            cout << " = " << oc_to_dec(intinptr) << endl;
-            system("pause");
-
+        case 10: //Octal a decimal
+            do{
+                system("cls");
+                cout << "Ingrese un numero en notacion octal: ";
+                cin >> intin;
+                intinptr = &intin;
+                if(is_octal(to_string(intin))==0){
+                    cout << "Solo puede ingresar números del 0 al 7" << endl << "intente de nuevo..." << endl;
+                    system("pause");
+                    flag = false; 
+                }
+                else{
+                    cout <<intin;
+                    cout << " = " << oc_to_dec(intinptr) << endl;
+                    system("pause");
+                    flag = true;
+                }
+            }while(!flag);
             break;
 
         case 11: //decimal a hexadecimal
-            
-            system("cls");
-            cout << "Ingrese un numero entero: ";
-            cin >> intin;
-            intinptr = &intin;
-            cout << intin;
-            cout <<" = " << dec_to_hex(intinptr)<< endl;
-            system("pause");
+            do{
+                system("cls");
+                cout << "Ingrese un numero entero: ";
+                cin >> intin;
+                intinptr = &intin;
+                if(is_digit(to_string(intin))==0){
+                    cout << "Solo puede ingresar números." << endl << "intente de nuevo..." << endl;
+                    system("pause");
+                    flag = false; 
+                }
+                else{
+                    cout <<intin;
+                    cout <<" = " << dec_to_hex(intinptr)<< endl;
+                    system("pause");
+                    flag = true;
+                }
+            }while(!flag);
             break;
         
         case 12: //hexadecimal a decimal
-
-            system("cls");
             hex_to_dec_input();
-            system("pause");
             break;
         
         default: 
@@ -185,4 +285,60 @@ void two_inputs(){
     cout<<"Ingrese el segundo numero: ";
     cin>>din2;
     din2ptr = &din2;
+}
+
+int is_digit(string input){
+    char c;
+    for(int i=0; i<input.length(); i++){
+        c = input[i];
+        if(isdigit(c)==0){
+            return 0;
+        }
+        else{
+            continue;
+        }
+    }
+    return 1;
+}
+
+int is_double(string input){
+    char c;
+    for(int i=0; i<input.length(); i++){
+        c = input[i];
+        if(isdigit(c) || c == '.'){
+            continue;
+        }
+        else{
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int is_binary(string input){
+    char c;
+    for(int i=0; i<input.length(); i++){
+        c = input[i];
+        if(c == '1' || c == '0'){
+            continue;
+        }
+        else{
+            return 0;
+        }
+    }
+    return 1;
+}
+
+int is_octal(string input){
+    char c;
+    for(int i=0; i<input.length(); i++){
+        c = input[i];
+        if(c < 48 || c > 55){
+            return 0;
+        }
+        else{
+            continue;
+        }
+    }
+    return 1;
 }
