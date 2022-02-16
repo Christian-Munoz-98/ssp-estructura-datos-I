@@ -1,8 +1,3 @@
-#include <iostream>
-#include <cstdlib>
-
-using namespace std;
-
 class Triangulo{
 private:
     double base;
