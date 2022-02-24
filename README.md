@@ -1,2 +1,10 @@
-# ssp-estructura-de-datos-I
-Seminario de solución de problemas de estructura de datos 
+## Seminario de Solución de Problemas de Estructura de Datos I
+### Profesor: Ramiro Lupercio Coronel
+### Alumno: Christian Geovany Muñoz Rodríguez
+
+#### Temario:
+- Punteros
+- POO
+- POO Herencia
+
+
