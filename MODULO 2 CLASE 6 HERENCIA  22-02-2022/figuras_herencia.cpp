@@ -6,125 +6,98 @@ using namespace std;
 
 class Figura{
 private:
-    double base;
-    double altura;
-public:
-    void setBase(double);
-    double getBase();
-    void setAltura(double);
-    double getAltura();
-};
-
-void Figura::setBase(double base){
-    this->base = base;
-}
-
-double Figura::getBase(){
-    return this->base;
-}
-
-void Figura::setAltura(double altura){
-    this->altura = altura;
-}
-
-double Figura::getAltura(){
-    return this->altura;
-}
-
-class Triangulo: public Figura{
-private:
+    double a;
+    double b;
     double area;
 public:
-    void calcularArea();
+    void setA(double);
+    double getA();
+    void setB(double);
+    double getB();
+    void setArea(double);
     double getArea();
 };
 
-void Triangulo::calcularArea(){
-        this->area = (this->getBase()*this->getAltura())/2;
+void Figura::setA(double a){
+    this->a = a;
 }
 
-double Triangulo::getArea(){
+double Figura::getA(){
+    return this->a;
+}
+
+void Figura::setB(double b){
+    this->b = b;
+}
+
+double Figura::getB(){
+    return this->b;
+}
+
+void Figura::setArea(double area){
+    this->area = area;
+}
+
+double Figura::getArea(){
     return this->area;
+}
+
+class Triangulo: public Figura{
+public:
+    void calculaArea();
+};
+
+void Triangulo::calculaArea(){
+        this->setArea(this->getA()*this->getB()/2);
 }
 
 class Poligono: public Figura{
 private:
-    int n_lados;
-    double m_lado;
     double perimetro;
     double m_angulo;
-    double area;
     double apotema;
 public:
-    void set_n_lados(int);
-    void set_m_lado(double);
     void calcular_perimetro();
     void calcular_angulo();
     void calcular_apotema();
     void calcular_area();
-    double get_area();
 };
 
-void Poligono::set_n_lados(int n_lados){
-    this->n_lados = n_lados;
-}
-
-void Poligono::set_m_lado(double m_lado){
-    this->m_lado = m_lado;
-}
-
 void Poligono::calcular_perimetro(){
-    this->perimetro = this->m_lado*this->n_lados;
+    this->perimetro = this->getA()*this->getB();
 }
 
 void Poligono::calcular_angulo(){
-    this->m_angulo = 360/(this->n_lados*2);
+    this->m_angulo = 360/(this->getA()*2);
 }
 
 void Poligono::calcular_apotema(){
-    this->apotema = this->m_lado/(2*tan(this->m_angulo*PI/180));
+    this->apotema = this->getB()/(2*tan(this->m_angulo*PI/180));
 }
 
 void Poligono::calcular_area(){
     calcular_perimetro();
     calcular_angulo();
     calcular_apotema();
-    this->area = this->perimetro*this->apotema/2;
-}
-
-double Poligono::get_area(){
-    return this->area;
+    this->setArea(this->perimetro*this->apotema/2);
 }
 
 class Cuadrado: public Figura{
-private:
-    double area;
 public:
     void calculaArea();
-    double getArea();
 };
 
 void Cuadrado::calculaArea(){
-    this->area = this->getBase() * this->getBase();
-}
-
-double Cuadrado::getArea(){
-    return this->area;
+    this->setArea(this->getA()*this->getA());
 }
 
 class Rectangulo:public Figura{
-private:
-    double area;
 public:
     void calculaArea();
-    double getArea();
 };
-void Rectangulo::calculaArea(){
-    this->area = this->getBase()*this->getAltura();
-}
 
-double Rectangulo::getArea(){
-    return this->area;
+void Rectangulo::calculaArea(){
+    this->setArea(this->getA()*this->getB());
 }
 
 bool d_input(string);
@@ -134,7 +107,7 @@ void opciones(int);
 void triangulo(double,double);
 void cuadrado(double);
 void rectangulo(double,double);
-void poligono(int,double);
+void poligono(double,double);
 
 string input1,input2;
 
@@ -254,12 +227,12 @@ void opciones(int opc){
         cin >> input1;
         cout << "Ingrese la medida de los lados>>";
         cin >> input2;
-        if(!i_input(input1)||!d_input(input2)){
+        if(!d_input(input1)||!d_input(input2)){
             cout << "Error!"<<endl
             << "Ingrese un valor entero para el numero de lados y un valor real para la medida de los lados"<<endl;
         }
         else{
-            poligono(stoi(input1),stod(input2));
+            poligono(stod(input1),stod(input2));
         }
         break;
 
@@ -272,31 +245,31 @@ void opciones(int opc){
 
 void triangulo(double base,double altura){
     Triangulo t;
-    t.setBase(base);
-    t.setAltura(altura);
-    t.calcularArea();
+    t.setA(base);
+    t.setB(altura);
+    t.calculaArea();
     cout << "Area = " << t.getArea() << endl;
 }
 
 void cuadrado(double lado){
     Cuadrado c;
-    c.setBase(lado);
+    c.setA(lado);
     c.calculaArea();
     cout << "Area = " << c.getArea() << endl;
 }
 
 void rectangulo(double base, double altura){
     Rectangulo r;
-    r.setBase(base);
-    r.setAltura(altura);
+    r.setA(base);
+    r.setB(altura);
     r.calculaArea();
     cout << "Area = " << r.getArea() << endl;
 }
 
-void poligono(int n_lados, double m_lado){
+void poligono(double n_lados, double m_lado){
     Poligono p;
-    p.set_n_lados(n_lados);
-    p.set_m_lado(m_lado);
+    p.setA(n_lados);
+    p.setB(m_lado);
     p.calcular_area();
-    cout << "Area = " << p.get_area() << endl;
+    cout << "Area = " << p.getArea() << endl;
 }
