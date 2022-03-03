@@ -112,4 +112,4 @@ void Stack::GoToxy(int x,int y){
       dwPos.X = x;  
       dwPos.Y= y;  
       SetConsoleCursorPosition(hcon,dwPos);  
- }
+}
