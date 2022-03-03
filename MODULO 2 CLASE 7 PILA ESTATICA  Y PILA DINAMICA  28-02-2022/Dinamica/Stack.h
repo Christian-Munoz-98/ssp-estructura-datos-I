@@ -26,13 +26,25 @@ Stack::Stack(){
 }
 
 void Stack::Push(){
-	int x;
+	string x;
 	cout<<"Ingrese un numero>>> ";
 	cin>>x;
-    Node* NuevoNodo = new Node(x);
-    NuevoNodo->Next = Top;
-    Top = NuevoNodo;
-	Count++;
+    if(!isdigit(x[0])){
+        cout<<"Error! Ingrese un numero!..."<<endl;
+        system("pause");
+    }
+    else{
+        if(stoi(x)>9||stoi(x)<0){
+            cout<<"Si ingresa ese numero la pila se va a ver fea :P"<<endl;
+            system("pause");
+        }
+        else{
+            Node* NuevoNodo = new Node(stoi(x));
+            NuevoNodo->Next = Top;
+            Top = NuevoNodo;
+            Count++;
+        }
+    }
 }
 
 void Stack::Pop(){

@@ -4,7 +4,7 @@ using namespace std;
 
 int main(){
 	Stack s;
-	int opcion;
+	string opcion;
 
 	do{    
 		system("cls");
@@ -16,23 +16,29 @@ int main(){
 		<<"[4].salir"<<endl
 		<<"Ingrese una opcion>>> ";
 		cin>>opcion;
-		switch(opcion){
-			case 1:
-			    s.Push();
-			    break;
-			case 2:  
-				s.Pop();
-			    break;
-			case 3:  
-				s.ShowTop();
-			    break;
-			case 4:
-				cout<<"Saliendo..."<<endl;
-				break;   
-			default:
-				cout<<"Opcion invalida..."<<endl;	  	        
-			    system("pause");
+		if(!isdigit(opcion[0])){
+        	cout<<"Error! Ingrese un numero!..."<<endl;
+        	system("pause");
 		}
-	}while(opcion!=4);
+		else{
+			switch(stoi(opcion)){
+				case 1:
+					s.Push();
+					break;
+				case 2:  
+					s.Pop();
+					break;
+				case 3:  
+					s.ShowTop();
+					break;
+				case 4:
+					cout<<"Saliendo..."<<endl;
+					break;   
+				default:
+					cout<<"Opcion invalida..."<<endl;	  	        
+					system("pause");
+			}
+		}
+	}while(opcion!="4");
 	return 0;
 }
