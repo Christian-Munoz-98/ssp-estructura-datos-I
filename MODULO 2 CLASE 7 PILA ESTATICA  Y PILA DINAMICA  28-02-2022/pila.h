@@ -1,95 +1,111 @@
 #include<iostream>
 #include<stdlib.h>
 #include<windows.h>
+#define MAX 10
+
 using namespace std;
 
-class pila{
+class Stack{
 private:
-    int datos[10],tope;
+    int Data[MAX];
+	int Top;
 
-public:		
-	pila();
-	void push();
-	void pop();
-	int  vacia();
-	int llena();
-	void mostrar_tope();
-	void mostrar_pila();
-	void gotoxy(int,int);
-		
-		
+public:
+    Stack();
+    void Push();
+    void Pop();
+	bool IsEmpty();
+	bool IsFull();
+    void ShowTop();
+	void SohowStack();
+	void GoToxy(int, int);
+
 };
 
-pila::pila(){
-	tope=-1;
+Stack::Stack(){
+	Top = -1;
 }
 
-void pila::push(){
+void Stack::Push(){
 	int x;
-	if(llena()==0){
-		cout<<"ingresa numero"<<endl;
+	if(!IsFull()){
+		cout<<"Ingrese un numero>>> ";
 		cin>>x;
-		tope ++;
-	    datos[tope]=x;	
+		Top ++;
+	    Data[Top]=x;
 	}	
-}
-
-void pila::pop(){
-	if(vacia()==0){
-		datos[tope ]= 0;
-		tope --;
-	}
-	
-}
-void pila::mostrar_tope(){
-	if(vacia()==0){
-		system("cls");
-		cout<<"El tope es:  "<<datos[tope ]<<endl;
+	else{
+		cout<<"La pila esta llena..."<<endl;
 		system("pause");
 	}
 }
 
-void pila::mostrar_pila(){
-	int ayuda,i;
-	if(vacia()==0){
-		system("cls");
-	   	printf("\n\n\t\t%c%c%c%c%c  \n",201,205,205,205,187);
-	    for(i=tope;i>=0;i--){
-		     printf("\t\t%c ",186,205);
-		    cout<<datos[i]; printf(" %c\n",186);
-		    printf("\t\t%c%c%c%c%c\n",204,205,205,205,185);
-		    
-		}
-			//system("pause");
-	}
-	
-  }
-
-int  pila::vacia(){
-	if(tope==-1){
-		system("cls");
-		cout<<"LA PILA ESTA VACIA"<<endl;
-		system("pause");
-		
-		return 1;
-	} else{
-		return 0;
-	}	
-}
-int  pila::llena(){
-	if(tope==9){
-		system("cls");
-		cout<<"LA PILA ESTA LLENA "<<endl;
-		system("pause");
-	     return 1;
-	
+void Stack::Pop(){
+	if(!IsEmpty()){
+		Data[Top] = 0;
+		Top--;
 	}
 	else{
-			return 0;
+		cout<<"No se puede realizar la operacion..."<<endl;
+		system("pause");
+	}	
+}
+
+bool Stack::IsEmpty(){
+	return Top == -1;	
+}
+
+bool  Stack::IsFull(){
+	return Top == MAX-1;
+}
+
+void Stack::ShowTop(){
+	if(!IsEmpty()){
+		system("cls");
+		printf("\t%c%c%c%c%c  \n",201,205,205,205,187);
+		printf("Tope--->");
+		printf("%c ",186);
+		cout<<Data[Top]; 
+    	printf(" %c\n",186);
+		printf("\t%c%c%c%c%c\n",200,205,205,205,188);
+		system("pause");
+	}
+	else{
+		cout<<"No se puede realizar la operacion..."<<endl;
+		system("pause");
 	}
 }
 
-void pila:: gotoxy(int x,int y){  
+void Stack::SohowStack(){
+	int i;
+	if(!IsEmpty()){
+	   	printf("\n\n\t%c%c%c%c%c  \n",201,205,205,205,187);
+	    for(i=Top;i>=0;i--){
+            if(i==Top){
+                printf("Tope--->");
+                printf("%c ",186);
+		        cout<<Data[i]; 
+                printf(" %c\n",186);
+            }
+            else{
+                printf("\t%c ",186);
+                cout<<Data[i]; 
+                printf(" %c\n",186);
+            }
+            if(i==0){
+                printf("\t%c%c%c%c%c\n",200,205,205,205,188);	        
+            }
+            else{
+		        printf("\t%c%c%c%c%c\n",204,205,205,205,185);
+            }
+		}
+	}
+	else{
+		cout<<"La pila esta vacia..."<<endl;
+	}
+}
+
+void Stack::GoToxy(int x,int y){  
       HANDLE hcon;  
       hcon = GetStdHandle(STD_OUTPUT_HANDLE);  
       COORD dwPos;  
