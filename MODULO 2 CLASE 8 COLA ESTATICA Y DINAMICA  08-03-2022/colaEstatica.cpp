@@ -3,8 +3,6 @@
 
 using namespace std;
 
-//recuadros
-//validaciones
 
 
 class cola{
@@ -31,7 +29,7 @@ cola::cola(){
  void cola::push(){
  	string x;
 	if(!lleno()){
-	 	cout<<"Ingrese dato "<<endl;
+	 	cout<<"Ingrese dato >> ";
    	    cin>>x;
         if(!isdigit(x[0])){
             cout<<"Error! Ingrese un numero!..."<<endl;
@@ -61,7 +59,8 @@ void cola::consultar_inicio(){
 		printf("\t%c%c%c%c%c  \n",201,205,205,205,187);
 		printf("\t%c ",186);
 		cout<<dato[0]; 
-    	printf(" %c\n",186);
+    	printf(" %c",186);
+        cout<< "<---Inicio" << endl;
 		printf("\t%c%c%c%c%c\n",200,205,205,205,188);
 	}
     else{
@@ -74,7 +73,8 @@ void cola::consultar_final(){
 	if(!vacio()){
         system("cls");
 		printf("\t%c%c%c%c%c  \n",201,205,205,205,187);
-		printf("\t%c ",186);
+        cout << "Final-->";
+		printf("%c ",186);
 		cout<<dato[fin]; 
     	printf(" %c\n",186);
 		printf("\t%c%c%c%c%c\n",200,205,205,205,188);
@@ -88,23 +88,19 @@ void cola::consultar_final(){
 void cola::mostrar_cola(){
 	if(!vacio()){
 	system("cls");
-        printf("\n\n\t%c%c%c%c%c  \n",201,205,205,205,187);
+        cout<<"\tFinal"<<endl
+        <<"\t  |"<<endl;
+        printf("\t%c%c%c%c%c  \n",201,205,205,205,187);
 		for(int i=fin;i>=0;i--){
 		    if(dato[i]!=-1){
-                if(i==fin){
-                    printf("Tope--->");
-                    printf("%c ",186);
-		            cout<<dato[i]; 
-                    printf(" %c\n",186);
-                }
-                else{
                     printf("\t%c ",186);
                     cout<<dato[i]; 
                     printf(" %c\n",186);
-                }
                 if(i==0){
-                    printf("\t%c%c%c%c%c\n",200,205,205,205,188);
-                    printf("---Inicio--^\n");	        
+                    printf("\t%c%c%c%c%c",200,205,205,205,188);
+                   cout <<  endl <<  "\t  |"<<endl
+                    << "\tInicio"<<endl<<endl;
+                    	        
                 }
                 else{
 		            printf("\t%c%c%c%c%c\n",204,205,205,205,185);
@@ -117,14 +113,6 @@ void cola::mostrar_cola(){
         cout<<"La cola esta vacia"<<endl;
     }
 }
-/*
-
-		}
-	}
-	else{
-		cout<<"La pila esta vacia..."<<endl;
-	}
-}*/
 
 void cola::pop(){
 	if(!vacio()){
@@ -136,8 +124,8 @@ void cola::pop(){
 	}
     else{
         cout<<"Lea arriba -_-"<<endl;
+        system("pause");
     }
-    system("pause");
 }
 
 bool cola::lleno(){
@@ -164,7 +152,8 @@ int main(){
         cout<<"[2]Mostrar inicio"<<endl;
         cout<<"[3]Mostrar fin"<<endl;
         cout<<"[4]Des-Encolar(pop)"<<endl;
-        cout<<"[5]Salir"<<endl;
+        cout<<"[5]Salir"<<endl
+        << "ingrese opcion >> ";
         cin>>opcion;
 	    if(!isdigit(opcion[0])){
             cout<<"Error! Ingrese un numero!..."<<endl;
