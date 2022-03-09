@@ -32,10 +32,10 @@ void Cola::Frente(){
 	if(!Vacio()){
         system("cls");
 		printf("\t%c%c%c%c%c  \n",201,205,205,205,187);
-		printf("\t%c ",186);
+        cout<< "Frente->";
+		printf("%c ",186);
 		cout<<frente->valor; 
-    	printf(" %c",186);
-        cout<< "<---Frente" << endl;
+    	printf(" %c\n",186);
 		printf("\t%c%c%c%c%c\n",200,205,205,205,188);
 	}
     else{
@@ -64,28 +64,20 @@ void Cola::MostrarCola(){
     Nodo* inicio= frente;
 	if(!Vacio()){
 	    system("cls");
+        cout<<"\tFrente"<<endl
+        <<"\t  |"<<endl;
+        printf("\t%c%c%c%c%c\n",201,205,205,205,187);
         for(int i=contador-1;i>=0;i--){
-            if(i==contador-1)
-                printf("\t");
-            printf("%c%c%c%c%c",201,205,205,205,187);
-            if(i==0)
-                printf("\n");
-        }
-        cout<<"Frente->";
-		for(int i=contador-1;i>=0;i--){
-            printf("%c ",186);
+            printf("\t%c ",186);
             cout<<inicio->valor; 
-            printf(" %c",186);
-            inicio = inicio->siguiente;
+            printf(" %c\n",186);
+            if(i!=0)
+                printf("\t%c%c%c%c%c\n",204,205,205,205,185);
+            inicio = inicio->siguiente;                
         }
-        cout<<"<--Atras" << endl;
-        for (int i =contador-1; i>=0; i--){
-            if(i==contador-1)
-                printf("\t");
-            printf("%c%c%c%c%c",200,205,205,205,188);
-            if(i==0)
-                printf("\n");
-        }       
+        printf("\t%c%c%c%c%c\n",200,205,205,205,188);
+        cout<< "\t  |"<<endl
+        <<"\tAtras" << endl;    
     }
     else{
         cout<<"La cola esta vacia..."<<endl;
