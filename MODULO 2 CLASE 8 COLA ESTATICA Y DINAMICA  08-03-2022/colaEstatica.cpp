@@ -87,33 +87,43 @@ void cola::consultar_final(){
 
 void cola::mostrar_cola(){
 	if(!vacio()){
-	system("cls");
-        cout<<"\tFinal"<<endl
-        <<"\t  |"<<endl;
-        printf("\t%c%c%c%c%c  \n",201,205,205,205,187);
+	    system("cls");
+        for(int i=fin;i>=0;i--){
+            if(i==fin)
+                printf("\t");
+            printf("%c%c%c%c%c",201,205,205,205,187);
+            if(i==0)
+                printf("\n");
+        }
+        cout<<"Final-->";
 		for(int i=fin;i>=0;i--){
 		    if(dato[i]!=-1){
-                    printf("\t%c ",186);
+                    printf("%c ",186);
                     cout<<dato[i]; 
-                    printf(" %c\n",186);
-                if(i==0){
-                    printf("\t%c%c%c%c%c",200,205,205,205,188);
-                   cout <<  endl <<  "\t  |"<<endl
-                    << "\tInicio"<<endl<<endl;
-                    	        
-                }
-                else{
-		            printf("\t%c%c%c%c%c\n",204,205,205,205,185);
-
-                }
+                    printf(" %c",186);
             }
         }
-	}
+        cout<<"<--Inicio" << endl;
+        for (int i = fin; i>=0; i--){
+            if(i==fin)
+                printf("\t");
+            printf("%c%c%c%c%c",200,205,205,205,188);
+            if(i==0)
+                printf("\n");
+        }
+        
+    }
     else{
         cout<<"La cola esta vacia"<<endl;
     }
 }
 
+/*
+
+            }
+        }
+	}
+*/
 void cola::pop(){
 	if(!vacio()){
 		for(int i=0;i<=fin;i++){
