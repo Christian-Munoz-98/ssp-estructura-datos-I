@@ -42,7 +42,7 @@ void Pasajero::setBoleto(){
 void Pasajero::setMaletas(){
     maletas = rand() % 5 + 1;
 }
-
+ 
 void Pasajero::mostrarDatos(){
     gotoxy((id-1)*20,0);cout<<"----------"<<endl;
     gotoxy((id-1)*20,1);cout <<"Nombre: "<<nombre<< endl;
@@ -50,7 +50,5 @@ void Pasajero::mostrarDatos(){
     gotoxy((id-1)*20,3);cout<<"Boleto: "<<boleto<<endl;
     gotoxy((id-1)*20,4);cout<<"----------"<<endl;
 }
-
-
 
 

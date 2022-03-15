@@ -21,9 +21,34 @@ Pila::Pila(){
 void Pila::Push(Pasajero* Nuevo){
     Nuevo->siguiente = Top;
     Top = Nuevo;
-    gotoxy(40,10);cout<<"Aborda " << Nuevo->nombre<<"..."<<endl;
     Contador++;
-    system("cls");
+    gotoxy(70,5);cout<<"-----ABORDAJE-----"<<endl;
+    gotoxy(70,8);cout<<"Aborda " << Nuevo->nombre<<"..."<<endl;
+    gotoxy(70,10);cout<<"................."<<endl;
+    gotoxy(70,11);cout<<":   :   :   :   :"<<endl;
+    gotoxy(70,12);cout<<"................."<<endl;
+    gotoxy(70,13);cout<<":   :   :   :   :"<<endl;
+    gotoxy(70,14);cout<<"................."<<endl;
+    gotoxy(70,15);cout<<":   :   :   :   :"<<endl;
+    gotoxy(70,16);cout<<"................."<<endl;
+    gotoxy(70,17);cout<<":   :   :   :   :"<<endl;
+    gotoxy(70,18);cout<<"................."<<endl;
+    gotoxy(70,19);cout<<":   :   :   :   :"<<endl;
+    gotoxy(70,20);cout<<"................."<<endl;
+    gotoxy(70,21);cout<<":   :   :   :   :"<<endl;
+    gotoxy(70,22);cout<<"................."<<endl;
+    int x=71;
+    int y=11;
+    for(int i=1;i<=Contador;i++){    
+        gotoxy(x,y); cout<<" o ";
+        x+=4;
+        if(i%4==0){
+            y+=2;
+            x=71;
+        }
+        Sleep(100);
+    }
+    Sleep(1000);
 }
 
 Pasajero* Pila::Pop(){
@@ -37,6 +62,7 @@ bool Pila::Vacia(){
     return Contador <= 0;
 }
 
+/*
 void Pila::Abordar(){
     int x=71;
     int y=11;
@@ -61,7 +87,8 @@ void Pila::Abordar(){
             y+=2;
             x=71;
         }
-        Sleep(300);
+        Sleep(100);
     }
-    system("pause");
+    gotoxy(70,22);system("pause");
 }
+*/
