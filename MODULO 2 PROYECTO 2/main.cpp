@@ -16,6 +16,7 @@ int main(){
         gotoxy(100,12);cout<< "Desea Registrar a otro pasajero? [1]si [cualquier tecla]no >> ";
         cin >> opcion;
     } while (opcion==1);
+    hideCursor();
     c->Recepcion();
     c->Asientos();
     c->Equipaje();
@@ -33,4 +34,5 @@ int main(){
         c->Transfer(p->Pop());
     }
     gotoxy(70,13);system("pause");
+    c->Taxi();
 };

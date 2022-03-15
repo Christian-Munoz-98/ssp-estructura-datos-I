@@ -12,6 +12,15 @@ void gotoxy(int x,int y){
     dwPos.Y= y;  
     SetConsoleCursorPosition(hcon,dwPos);  
 }
+
+void hideCursor(){
+    CONSOLE_CURSOR_INFO cursor;
+    cursor.bVisible = FALSE;
+    cursor.dwSize = sizeof(cursor);
+    HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleCursorInfo(handle,&cursor);
+}
+
 using namespace std;
 
 class Pasajero{
