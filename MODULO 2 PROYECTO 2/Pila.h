@@ -20,6 +20,7 @@ Pila::Pila(){
 }
 
 void Pila::Push(Pasajero* Nuevo){
+    system("cls");
     Nuevo->siguiente = Top;
     Top = Nuevo;
     Contador++;
@@ -59,7 +60,20 @@ Pasajero* Pila::Pop(){
     Contador--;
     gotoxy(70,5);cout<<"-----ATERRIZAJE-----"<<endl;
     gotoxy(70,8);cout<<"Baja " << Sacar->nombre<<"..."<<endl;
-    Sleep(1000);
+	int ban=0;
+	for(int j=70;j<95;j++){
+	    gotoxy(j,10);cout<< "  o";
+		gotoxy(j,11); cout<< " /|\\";
+		if(ban==0){
+			gotoxy(j,12); cout<< " / ";
+			ban=1;
+		}
+        else{
+			gotoxy(j,12); cout<< "   \\";
+			ban=0;
+		}
+	    Sleep(30);
+	}
     return Sacar;
 }
 

@@ -11,18 +11,18 @@ int main(){
     int opcion;
     do{
         system("cls");
-        gotoxy(100,10);cout<< "--REGISTRO DE PASAJEROS--" << endl;
-        gotoxy(100,11);c->Push();
-        gotoxy(100,12);cout<< "Desea Registrar a otro pasajero? [1]si [cualquier tecla]no >> ";
+        cout<< "--REGISTRO DE PASAJEROS--" << endl;
+        c->Push();
+        cout<< "Desea Registrar a otro pasajero? [1]si [cualquier tecla]no >> ";
         cin >> opcion;
-    } while (opcion==1);
+    }while(opcion==1);
     hideCursor();
     c->Recepcion();
     c->Asientos();
     c->Equipaje();
-    system("cls");
     Pila* p = new Pila();
     int auxcount = c->getCount();
+    system("cls");
     for(int i=0;i<auxcount;i++){
         p->Push(c->Pop());
     }
