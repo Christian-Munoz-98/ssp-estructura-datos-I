@@ -1,10 +1,5 @@
 #include "Pila.h"
 
-/*
-6.- Abordar taxi (Encolar)
-    Se muestra como van ingresando uno por uno a un taxi conforme se encolan
-*/
-
 int main(){
     srand(time(NULL));
     Cola* c = new Cola();
@@ -35,4 +30,5 @@ int main(){
     }
     gotoxy(70,13);system("pause");
     c->Taxi();
+    fin();
 };

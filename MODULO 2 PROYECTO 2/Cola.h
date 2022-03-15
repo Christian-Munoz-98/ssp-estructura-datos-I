@@ -1,5 +1,8 @@
 #include "Pasajero.h"
 
+void ciudad(int);
+void fin();
+
 class Cola{
 private:
     int contador;
@@ -193,6 +196,9 @@ void Cola::Equipaje(){
 void Cola::Taxi(){
     Pasajero* inicio=frente;
 	system("cls");
+    ciudad(0);
+    ciudad(67);
+    ciudad(134);
     int tope=180;
     for(int i=0;i<contador;i++){
 	    int ban=0;
@@ -209,8 +215,14 @@ void Cola::Taxi(){
 			    ban=0;
 		    }
 	        Sleep(30);
+            ciudad(0);
+            ciudad(67);
+            ciudad(134);
 	    }
-        gotoxy(tope,12);cout<< "/ \\";
+        gotoxy(tope,9);cout<< "  " << inicio->id;
+        gotoxy(tope,10);cout<< "  o";
+        gotoxy(tope,11); cout<< " /|\\";
+        gotoxy(tope,12);cout<< " / \\";
         inicio->mostrarDatos();
         inicio = inicio->siguiente;
         Sleep(500);          
@@ -252,27 +264,29 @@ void Cola::Taxi(){
     }             
 }
 
-
-/*
-    int tope=180;
-    for(int i=0;i<5;i++){
-	    int ban=0;
-	    for(int j=0;j<tope;j++){
-            gotoxy(j,9);cout<< "  " <<i;
-	        gotoxy(j,10);cout<< "  o";
-		    gotoxy(j,11); cout<< " /|\\";
-		    if(ban==0){
-				gotoxy(j,12); cout<< " / ";
-			    ban=1;
-		    }
-            else{
-			    gotoxy(j,12); cout<< "   \\";
-			    ban=0;
-		    }
-	        Sleep(10);
-	    }
-        gotoxy(tope,12);cout<< "/ \\";
-        Sleep(500);
-
+void ciudad(int c){
+    gotoxy(c,6);cout<<"                                                       |"<<endl;
+    gotoxy(c,7);cout<<"                                                      ( )_"<<endl;
+    gotoxy(c,8);cout<<"             |                                       /\\ | |"<<endl;
+    gotoxy(c,9);cout<<"            (_)             |      |   __         |  ||-| |-[]|  \\|/  \\|"<<endl;
+    gotoxy(c,10);cout<<" ___|___   _| |____   |    (_)_  _( )_|[]|     __(_)_|| |     |_~(|)~~(|"<<endl;
+    gotoxy(c,11);cout<<"(_)__)__|_| []|[]  |_(_)_  |[]|_|_[]__|__|  __| |[]|__| | []|___|_|____|"<<endl;
+    gotoxy(c,12);cout<<"| |__| [] |   |[]  |  | |  |    | []  |  | |  | |   |||_|    [][]      |"<<endl;
+    gotoxy(c,23);cout<<"___________________________________________________________________"<<endl;
+    gotoxy(c,24);cout<<"###################################################################"<<endl;
 }
-*/
+
+void fin(){
+    gotoxy(80,5);cout<<" .----------------.  .----------------.  .-----------------."<<endl;
+    gotoxy(80,6);cout<<"| .--------------. || .--------------. || .--------------. |"<<endl;
+    gotoxy(80,7);cout<<"| |  _________   | || |     _____    | || | ____  _____  | |"<<endl;
+    gotoxy(80,8);cout<<"| | |_   ___  |  | || |    |_   _|   | || ||_   \\|_   _| | |"<<endl;
+    gotoxy(80,9);cout<<"| |   | |_  \\_|  | || |      | |     | || |  |   \\ | |   | |"<<endl;
+    gotoxy(80,10);cout<<"| |   |  _|      | || |      | |     | || |  | |\\ \\| |   | |"<<endl;
+    gotoxy(80,11);cout<<"| |  _| |_       | || |     _| |_    | || | _| |_\\   |_  | |"<<endl;
+    gotoxy(80,12);cout<<"| | |_____|      | || |    |_____|   | || ||_____|\\____| | |"<<endl;
+    gotoxy(80,13);cout<<"| |              | || |              | || |              | |"<<endl;
+    gotoxy(80,14);cout<<"| '--------------' || '--------------' || '--------------' |"<<endl;
+    gotoxy(80,15);cout<<" '----------------'  '----------------'  '----------------'"<<endl;
+    gotoxy(80,16);system("pause");
+}
