@@ -51,4 +51,19 @@ void Pasajero::mostrarDatos(){
     gotoxy((id-1)*20,4);cout<<"----------"<<endl;
 }
 
-
+void avion(){
+    for(int y=0;y<9;y+=3){
+        for (int x=0;x<200;x++){
+            gotoxy(x,0+y);cout<<"            ______"<<endl;
+            gotoxy(x,1+y);cout<<"             _\\ _~-\\___"<<endl;
+            gotoxy(x,2+y);cout<<"     =  = ==(____AA____D"<<endl;
+            gotoxy(x,3+y);cout<<"                 \\_____\\___________________,-~~~~~~~`-.._"<<endl;
+            gotoxy(x,4+y);cout<<"                 /     o O o o o o O O o o o o o o O o  |\\_"<<endl;
+            gotoxy(x,5+y);cout<<"                 `~-.__        ___..----..                  )"<<endl;
+            gotoxy(x,6+y);cout<<"                       `---~~\\___________/------------`````"<<endl;
+            gotoxy(x,7+y);cout<<"                       =  ===(_________D"<<endl;
+            Sleep(20);        
+        }
+    system("cls");
+    }
+}

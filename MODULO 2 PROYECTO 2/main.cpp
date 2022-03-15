@@ -1,8 +1,6 @@
 #include "Pila.h"
 
 /*
-4.- Abordar Avión (Apilar)
-    *Se muestra la lista de pasajeros conforme vayan abordando
     *se muestra animacion de avion
 
 5.- Bajar de Avión (Desapilar)
@@ -34,4 +32,6 @@ int main(){
         p->Push(c->Pop());
     }
     gotoxy(70,23);system("pause");
+    system("cls");
+    avion();
 };
