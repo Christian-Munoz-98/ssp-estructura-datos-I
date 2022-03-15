@@ -1,4 +1,4 @@
-#include "Cola.h"
+#include "Pila.h"
 
 /*
 4.- Abordar Avión (Apilar)
@@ -27,4 +27,10 @@ int main(){
     c->Recepcion();
     c->Asientos();
     c->Equipaje();
+    Pila* p = new Pila();
+    int auxcount = c->getCount();
+    for(int i=0;i<auxcount;i++){
+        p->Push(c->Pop());
+    }
+    p->Abordar();
 };

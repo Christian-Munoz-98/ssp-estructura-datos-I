@@ -1,5 +1,4 @@
 #include "Pasajero.h"
-#include <windows.h>
 
 class Cola{
 private:
@@ -32,12 +31,13 @@ void Cola::Recepcion(){
     Pasajero* inicio=frente;
 	system("cls");
     int tope=150;
-    gotoxy(155,8);cout<<"|RECEPCION|"<<endl;
-    gotoxy(155,9);cout<<"     O     "<<endl;
-    gotoxy(155,10);cout<<"    /|\\    "<<endl;
-    gotoxy(155,11);cout<<"-----------"<<endl;
-    gotoxy(155,12);cout<<"||  / \\  ||"<<endl;
-    for(int i=contador-1;i>=0;i--){
+    int x=0;
+    for(int i=0;i<contador;i++){
+        gotoxy(155,8);cout<<"|RECEPCION|"<<endl;
+        gotoxy(155,9);cout<<"     O     "<<endl;
+        gotoxy(155,10);cout<<"    /|\\    "<<endl;
+        gotoxy(155,11);cout<<"-----------"<<endl;
+        gotoxy(155,12);cout<<"||  / \\  ||"<<endl;
 	    int ban=0;
 	    for(int j=0;j<tope;j++){
             gotoxy(j,9);cout<< "  " << inicio->id;
@@ -53,25 +53,46 @@ void Cola::Recepcion(){
 		    }
 	        Sleep(30);
 	    }
-        gotoxy(tope,12); cout<< "/ \\";
-        inicio->mostrarDatos();
+        gotoxy(tope,12);cout<< "/ \\";
+        gotoxy(x*20,0);cout<<"----------"<<endl;
+        gotoxy(x*20,1);cout <<"Nombre: "<<inicio->nombre<< endl;
+        gotoxy(x*20,2);cout <<"Id: "<<inicio->id<<endl;
+        gotoxy(x*20,3);cout<<"Boleto: "<<inicio->boleto<<endl;
+        gotoxy(x*20,4);cout<<"----------"<<endl;
         inicio = inicio->siguiente;
-        tope-=5;                
+        tope-=5;
+        if((x+1)%10==0){
+            system("cls");
+            x=0;
+            tope=150;
+        }
+        else{
+            x++;
+        }             
     }
     Sleep(1000);
     tope=150;
+    x=0;
     for(int i=0;i<contador;i++){
         gotoxy(tope,9);cout<< "   ";
 	    gotoxy(tope,10);cout<< "   ";
 	    gotoxy(tope,11);cout<< "    ";
         gotoxy(tope,12);cout<< "   ";
-        gotoxy(i*20,0);cout<<"           "<<endl;
-        gotoxy(i*20,1);cout <<"                    "<< endl;
-        gotoxy(i*20,2);cout <<"      "<<endl;
-        gotoxy(i*20,3);cout<<"                 "<<endl;
-        gotoxy(i*20,4);cout<<"           "<<endl;
+        gotoxy(x*20,0);cout<<"           "<<endl;
+        gotoxy(x*20,1);cout <<"                    "<< endl;
+        gotoxy(x*20,2);cout <<"      "<<endl;
+        gotoxy(x*20,3);cout<<"                 "<<endl;
+        gotoxy(x*20,4);cout<<"           "<<endl;
         Sleep(1000);  
-        tope-=5;                
+        tope-=5;
+        if((x+1)%10==0){
+            system("cls");
+            x=0;
+            tope=150;
+        }
+        else{
+            x++;
+        }                
     }
 }
 
@@ -98,19 +119,19 @@ void Cola::Asientos(){
         }
         inicio=inicio->siguiente;
     }
-    Sleep(3000);
+    system("pause");
 }
 
 void Cola::Equipaje(){
     Pasajero* inicio=frente;
 	system("cls");
     int tope=150;
-    gotoxy(155,8);cout<<"|EQUIPAJE|"<<endl;
-    gotoxy(155,9);cout<<"     O     "<<endl;
-    gotoxy(155,10);cout<<"    /|\\    "<<endl;
-    gotoxy(155,11);cout<<"-----------"<<endl;
-    gotoxy(155,12);cout<<"||  / \\  ||"<<endl;
     for(int i=contador-1;i>=0;i--){
+        gotoxy(155,8);cout<<"|EQUIPAJE|"<<endl;
+        gotoxy(155,9);cout<<"     O     "<<endl;
+        gotoxy(155,10);cout<<"    /|\\    "<<endl;
+        gotoxy(155,11);cout<<"-----------"<<endl;
+        gotoxy(155,12);cout<<"||  / \\  ||"<<endl;
         inicio->setMaletas();
 	    int ban=0;
 	    for(int j=0;j<tope;j++){
@@ -147,7 +168,10 @@ void Cola::Equipaje(){
         gotoxy(i*20,5);cout<<"              "<<endl;
         gotoxy(i*20,6);cout<<"             "<<endl;
         Sleep(1000);  
-        tope-=5;                
+        tope-=5;
+        if(i==10){
+            system("cls");
+        }               
     }
 }
 
@@ -168,14 +192,14 @@ void Cola::Push(){
         atras->siguiente=nuevo;
         atras = nuevo;
     }
-     contador++;
+    contador++;
 }
 
 Pasajero* Cola::Pop(){
     Pasajero* sacar= frente;
     frente = frente->siguiente;
-    return sacar;
     contador--;
+    return sacar;
 }
 
 int Cola::getCount(){

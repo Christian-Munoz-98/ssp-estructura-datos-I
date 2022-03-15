@@ -1,5 +1,4 @@
-#include <stdlib.h>
-#include "Pasajero.h"
+#include "Cola.h"
 
 class Pila{
 private:
@@ -8,13 +7,10 @@ private:
 
 public:
     Pila();
-    void Push();
-    void Pop();
-	bool IsEmpty();
-    void ShowTop();
-	void SohowStack();
-	void GoToxy(int, int);
-
+    void Push(Pasajero*);
+    Pasajero* Pop();
+	bool Vacia();
+	void Abordar();
 };
 
 Pila::Pila(){
@@ -22,98 +18,50 @@ Pila::Pila(){
     Top = NULL;
 }
 
-void Pila::Push(){
-	string x;
-	cout<<"Ingrese un numero>>> ";
-	cin>>x;
-    if(!isdigit(x[0])){
-        cout<<"Error! Ingrese un numero!..."<<endl;
-        system("pause");
-    }
-    else{
-        if(stoi(x)>9||stoi(x)<0){
-            cout<<"Si ingresa ese numero la pila se va a ver fea :P"<<endl;
-            system("pause");
+void Pila::Push(Pasajero* Nuevo){
+    Nuevo->siguiente = Top;
+    Top = Nuevo;
+    gotoxy(40,10);cout<<"Aborda " << Nuevo->nombre<<"..."<<endl;
+    Contador++;
+    system("cls");
+}
+
+Pasajero* Pila::Pop(){
+	Pasajero* Sacar = Top;
+    Top = Top->siguiente;
+    Contador--;
+    return Sacar;
+}
+
+bool Pila::Vacia(){
+    return Contador <= 0;
+}
+
+void Pila::Abordar(){
+    int x=71;
+    int y=11;
+    gotoxy(70,5);cout<<"-----ABORDAJE-----"<<endl;
+    gotoxy(70,10);cout<<"................."<<endl;
+    gotoxy(70,11);cout<<":   :   :   :   :"<<endl;
+    gotoxy(70,12);cout<<"................."<<endl;
+    gotoxy(70,13);cout<<":   :   :   :   :"<<endl;
+    gotoxy(70,14);cout<<"................."<<endl;
+    gotoxy(70,15);cout<<":   :   :   :   :"<<endl;
+    gotoxy(70,16);cout<<"................."<<endl;
+    gotoxy(70,17);cout<<":   :   :   :   :"<<endl;
+    gotoxy(70,18);cout<<"................."<<endl;
+    gotoxy(70,19);cout<<":   :   :   :   :"<<endl;
+    gotoxy(70,20);cout<<"................."<<endl;
+    gotoxy(70,21);cout<<":   :   :   :   :"<<endl;
+    gotoxy(70,22);cout<<"................."<<endl;
+    for(int i=1;i<=Contador;i++){    
+        gotoxy(x,y); cout<<" o ";
+        x+=4;
+        if(i%4==0){
+            y+=2;
+            x=71;
         }
-        else{
-            Node* NuevoNodo = new Node(stoi(x));
-            NuevoNodo->Next = Top;
-            Top = NuevoNodo;
-            Count++;
-        }
+        Sleep(300);
     }
-}
-
-void Stack::Pop(){
-	if(!IsEmpty()){
-		Node* Nodo = Top;
-        Top = Top->Next;
-        delete Nodo;
-		Count--;
-	}
-	else{
-		cout<<"No se puede realizar la operacion..."<<endl;
-		system("pause");
-	}	
-}
-
-bool Stack::IsEmpty()
-{
-    return Count <= 0;
-}
-
-void Stack::ShowTop(){
-	if(!IsEmpty()){
-		system("cls");
-		printf("\t%c%c%c%c%c  \n",201,205,205,205,187);
-		printf("Tope--->");
-		printf("%c ",186);
-		cout<<Top->Value; 
-    	printf(" %c\n",186);
-		printf("\t%c%c%c%c%c\n",200,205,205,205,188);
-		system("pause");
-	}
-	else{
-		cout<<"No se puede realizar la operacion..."<<endl;
-		system("pause");
-	}
-}
-
-void Stack::SohowStack(){
-	if(!IsEmpty()){
-        Node* Aux = Top;
-	   	printf("\n\n\t%c%c%c%c%c  \n",201,205,205,205,187);
-	    while(Aux!=NULL){
-            if(Aux==Top){
-                printf("Tope--->");
-                printf("%c ",186);
-		        cout<<Aux->Value; 
-                printf(" %c\n",186);
-            }
-            else{
-                printf("\t%c ",186);
-                cout<<Aux->Value; 
-                printf(" %c\n",186);
-            }
-            if(Aux->Next==NULL){
-                printf("\t%c%c%c%c%c\n",200,205,205,205,188);	        
-            }
-            else{
-		        printf("\t%c%c%c%c%c\n",204,205,205,205,185);
-            }
-            Aux = Aux->Next;
-		}
-	}
-	else{
-		cout<<"La pila esta vacia..."<<endl;
-	}
-}
-
-void Stack::GoToxy(int x,int y){  
-      HANDLE hcon;  
-      hcon = GetStdHandle(STD_OUTPUT_HANDLE);  
-      COORD dwPos;  
-      dwPos.X = x;  
-      dwPos.Y= y;  
-      SetConsoleCursorPosition(hcon,dwPos);  
+    system("pause");
 }
