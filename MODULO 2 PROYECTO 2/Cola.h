@@ -9,6 +9,7 @@ private:
 public:
     Cola();
     void Push();
+    void Transfer(Pasajero*);
     Pasajero* Pop();
     int getCount();
     void Recepcion();
@@ -37,6 +38,19 @@ void Cola::Push(){
     else{
         atras->siguiente=nuevo;
         atras = nuevo;
+    }
+    contador++;
+}
+
+void Cola::Transfer(Pasajero* Baja){
+    if(contador== 0){
+        Baja->siguiente=NULL;
+        frente = Baja;
+        atras = frente;
+    }
+    else{
+        atras->siguiente=Baja;
+        atras = Baja;
     }
     contador++;
 }

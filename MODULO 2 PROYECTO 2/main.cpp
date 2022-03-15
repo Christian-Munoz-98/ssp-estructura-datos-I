@@ -1,12 +1,6 @@
 #include "Pila.h"
 
 /*
-    *se muestra animacion de avion
-
-5.- Bajar de Avión (Desapilar)
-    *se muestra lista de pasajeros como van bajando
-    *Animacion de pasajeros bajando
-
 6.- Abordar taxi (Encolar)
     Se muestra como van ingresando uno por uno a un taxi conforme se encolan
 */
@@ -34,4 +28,9 @@ int main(){
     gotoxy(70,23);system("pause");
     system("cls");
     avion();
+    auxcount = p->getCount();
+    for(int i=0;i<auxcount;i++){
+        c->Transfer(p->Pop());
+    }
+    gotoxy(70,13);system("pause");
 };
