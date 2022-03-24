@@ -1,28 +1,29 @@
 #include "NodoDoble.h"
 
+template<typename T>
 class ListaDoble{
 public:
-    int contador;
-    NodoDoble* Cabecera;
-    NodoDoble* Cola;
+    T contador;
+    NodoDoble<T>* Cabecera;
+    NodoDoble<T>* Cola;
     
     ListaDoble();
 
     void InsertarInicio();
     void InsertarFinal();
-    void InsertarMedio(int);
+    void InsertarMedio(T);
 
     void RemoverInicio();
     void RemoverFinal();
-    bool RemoverMedio(int);
+    bool RemoverMedio(T);
     void VaciarLista();
 
-    int Buscar(int);
-    int BuscarIndice(int);
-    int Primero();
-    int Ultimo();
+    T Buscar(T);
+    T BuscarIndice(T);
+    T Primero();
+    T Ultimo();
 
-    int Tamanho();
+    T Tamanho();
     void MostrarLista();
     void MostrarReversa();
 
@@ -30,14 +31,16 @@ public:
     void DescSort();
 };
 
-ListaDoble::ListaDoble(){
+template<typename T>
+ListaDoble<T>::ListaDoble(){
     contador = 0;
     Cabecera = NULL;
     Cola = NULL;
 }
 
-void ListaDoble::InsertarInicio(){
-    NodoDoble* nuevoNodo = new NodoDoble();
+template<typename T>
+void ListaDoble<T>::InsertarInicio(){
+    NodoDoble<T>* nuevoNodo = new NodoDoble<T>();
 
     nuevoNodo->Siguiente = Cabecera;
 
@@ -52,12 +55,13 @@ void ListaDoble::InsertarInicio(){
     contador++;
 }
 
-void ListaDoble::InsertarFinal(){
+template<typename T>
+void ListaDoble<T>::InsertarFinal(){
     if(contador == 0){
         InsertarInicio();
     }
     else{
-        NodoDoble* nuevoNodo = new NodoDoble();
+        NodoDoble<T>* nuevoNodo = new NodoDoble<T>();
         Cola->Siguiente = nuevoNodo;
         nuevoNodo->Anterior = Cola;
         Cola = nuevoNodo;
@@ -65,7 +69,8 @@ void ListaDoble::InsertarFinal(){
     }
 }
 
-void ListaDoble::InsertarMedio(int indice){
+template<typename T>
+void ListaDoble<T>::InsertarMedio(T indice){
     if(indice < 0 || indice > contador){
         cout<<"Indice fuera de rango"<<endl;
         system("pause");
@@ -75,15 +80,15 @@ void ListaDoble::InsertarMedio(int indice){
     else if(indice == contador)
         InsertarFinal();
     else{
-        NodoDoble* nodoAnterior = Cabecera;
+        NodoDoble<T>* nodoAnterior = Cabecera;
 
         for(int i = 0; i < indice-1; i++){
             nodoAnterior = nodoAnterior->Siguiente;
         }
 
-        NodoDoble* nodoSiguiente = nodoAnterior->Siguiente;
+        NodoDoble<T>* nodoSiguiente = nodoAnterior->Siguiente;
 
-        NodoDoble* nuevoNodo = new NodoDoble();
+        NodoDoble<T>* nuevoNodo = new NodoDoble<T>();
 
         nuevoNodo->Siguiente = nodoSiguiente;
         nuevoNodo->Anterior = nodoAnterior;
@@ -94,11 +99,12 @@ void ListaDoble::InsertarMedio(int indice){
     }
 }
 
-void ListaDoble::RemoverInicio(){
+template<typename T>
+void ListaDoble<T>::RemoverInicio(){
     if(contador == 0)
         cout<<"Lista vacia..."<<endl;
     else{
-        NodoDoble* nodo = Cabecera;
+        NodoDoble<T>* nodo = Cabecera;
 
         Cabecera = Cabecera->Siguiente;
 
@@ -111,13 +117,14 @@ void ListaDoble::RemoverInicio(){
     }
 }
 
-void ListaDoble::RemoverFinal(){
+template<typename T>
+void ListaDoble<T>::RemoverFinal(){
     if(contador == 0)
         cout<<"Lista Vacia..."<<endl;
     if(contador == 1)
         RemoverInicio();
     else{
-        NodoDoble* nodo = Cola;
+        NodoDoble<T>* nodo = Cola;
 
         Cola = Cola->Anterior;
 
@@ -129,7 +136,8 @@ void ListaDoble::RemoverFinal(){
     }
 }
 
-bool ListaDoble::RemoverMedio(int indice){
+template<typename T>
+bool ListaDoble<T>::RemoverMedio(T indice){
     if(contador == 0)
         return false;
 
@@ -145,15 +153,15 @@ bool ListaDoble::RemoverMedio(int indice){
         return true;
     }
     
-    NodoDoble* nodoAnterior = Cabecera;
+    NodoDoble<T>* nodoAnterior = Cabecera;
 
     for(int i = 0; i < indice-1; i++){
         nodoAnterior = nodoAnterior->Siguiente;
     }
 
-    NodoDoble* nodo = nodoAnterior->Siguiente;
+    NodoDoble<T>* nodo = nodoAnterior->Siguiente;
 
-    NodoDoble* nodoSiguiente = nodo->Siguiente;
+    NodoDoble<T>* nodoSiguiente = nodo->Siguiente;
 
     nodoAnterior->Siguiente = nodoSiguiente;
     nodoSiguiente->Anterior = nodoAnterior;
@@ -164,7 +172,8 @@ bool ListaDoble::RemoverMedio(int indice){
     return true;
 }
 
-void ListaDoble::VaciarLista(){
+template<typename T>
+void ListaDoble<T>::VaciarLista(){
     int aux = contador;
 
     for(int i=1;i<=aux;i++){
@@ -174,11 +183,12 @@ void ListaDoble::VaciarLista(){
     cout << "Lista vaciada con exito" << endl;
 }
 
-int ListaDoble::Buscar(int indice){
+template<typename T>
+T ListaDoble<T>::Buscar(T indice){
     if(indice < 0 || indice > contador)
         return -1;
 
-    NodoDoble* nodo = Cabecera;
+    NodoDoble<T>* nodo = Cabecera;
 
     for(int i=0;i < indice;i++){
         nodo = nodo->Siguiente;
@@ -187,13 +197,14 @@ int ListaDoble::Buscar(int indice){
     return nodo->num;
 }
 
-int ListaDoble::BuscarIndice(int num){
+template<typename T>
+T ListaDoble<T>::BuscarIndice(T num){
     if(contador == 0)
         return -1;
 
     int indice = 0;
 
-    NodoDoble* nodo = Cabecera;
+    NodoDoble<T>* nodo = Cabecera;
 
     while(nodo->num != num)
     {
@@ -208,20 +219,24 @@ int ListaDoble::BuscarIndice(int num){
     return indice;
 }
 
-int ListaDoble::Primero(){
+template<typename T>
+T ListaDoble<T>::Primero(){
     return Cabecera->num;
 }
 
-int ListaDoble::Ultimo(){
+template<typename T>
+T ListaDoble<T>::Ultimo(){
     return Cola->num;
 }
 
-int ListaDoble::Tamanho(){
+template<typename T>
+T ListaDoble<T>::Tamanho(){
     return contador;
 }
 
-void ListaDoble::MostrarLista(){
-    NodoDoble* nodo = Cabecera;
+template<typename T>
+void ListaDoble<T>::MostrarLista(){
+    NodoDoble<T>* nodo = Cabecera;
 
     while(nodo != NULL){
         cout<<nodo->num<<" -> ";
@@ -231,8 +246,9 @@ void ListaDoble::MostrarLista(){
     cout <<"Fin" << endl;
 }
 
-void ListaDoble::MostrarReversa(){
-    NodoDoble* nodo = Cola;
+template<typename T>
+void ListaDoble<T>::MostrarReversa(){
+    NodoDoble<T>* nodo = Cola;
 
     while(nodo != NULL){
         cout<<nodo->num<<" -> ";
@@ -242,11 +258,12 @@ void ListaDoble::MostrarReversa(){
     cout <<"Fin" << endl;
 }
 
-void ListaDoble::AscSort(){
-    NodoDoble* start = Cabecera;
+template<typename T>
+void ListaDoble<T>::AscSort(){
+    NodoDoble<T>* start = Cabecera;
 	int swapped;
-	NodoDoble* ptr1;
-	NodoDoble* lptr = NULL;
+	NodoDoble<T>* ptr1;
+	NodoDoble<T>* lptr = NULL;
 
 	if (start == NULL)
 		return;
@@ -268,11 +285,13 @@ void ListaDoble::AscSort(){
 	}
 	while (swapped);
 }
-void ListaDoble::DescSort(){
-    NodoDoble* start = Cabecera;
+
+template<typename T>
+void ListaDoble<T>::DescSort(){
+    NodoDoble<T>* start = Cabecera;
 	int swapped;
-	NodoDoble* ptr1;
-	NodoDoble* lptr = NULL;
+	NodoDoble<T>* ptr1;
+	NodoDoble<T>* lptr = NULL;
 
 	if (start == NULL)
 		return;

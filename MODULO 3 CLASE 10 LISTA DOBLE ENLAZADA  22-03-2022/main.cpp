@@ -1,7 +1,7 @@
 #include "ListaDoble.h"
 
 void opciones(int);
-ListaDoble* lista = new ListaDoble();
+ListaDoble<int>* lista = new ListaDoble<int>();
 
 int main(){
     string opc;

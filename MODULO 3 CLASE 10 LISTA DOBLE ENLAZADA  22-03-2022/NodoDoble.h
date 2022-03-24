@@ -3,16 +3,18 @@
 using namespace std;
 bool i_input(string);
 
+template <typename T>
 class NodoDoble{
 public:
-    int num;
-    NodoDoble* Anterior;
-    NodoDoble* Siguiente;
+    T num;
+    NodoDoble<T>* Anterior;
+    NodoDoble<T>* Siguiente;
 
     NodoDoble();
 };
 
-NodoDoble::NodoDoble(){
+template<typename T>
+NodoDoble<T>::NodoDoble(){
     string _num;
     bool retry=false;
     do{
