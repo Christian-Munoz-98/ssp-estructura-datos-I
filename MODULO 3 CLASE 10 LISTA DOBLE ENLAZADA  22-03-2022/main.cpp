@@ -4,7 +4,7 @@ void opciones(int);
 ListaDoble* lista = new ListaDoble();
 
 int main(){
-    int opc;
+    string opc;
     do{
         system("cls");
         cout<<"1)Insertar"<<endl
@@ -22,15 +22,18 @@ int main(){
         <<"13)Salir"<<endl
         <<"Elija una opcion >>>>>";
         cin>>opc;
-        opciones(opc);
-    }while(opc!=13);
+        if (!i_input(opc))
+            opc="15";
+        opciones(stoi(opc));
+    }while(stoi(opc)!=13);
     return 0;
 }
 
 void opciones(int opc){
-    int numSearch;
-    char insert;
-    int index;
+    string numSearch;
+    string insert;
+    string index;
+    int int_index;
     bool confirmation;
     switch (opc){
     case 1:
@@ -41,17 +44,24 @@ void opciones(int opc){
         <<"c)Insertar en indice intermedio"<< endl
         <<"Elija una opcion >>> ";
         cin>>insert;
-        switch (insert){
+        if(insert.length()!=1)
+            insert="d";
+        switch (insert[0]){
             case 'a':
+            case 'A':
                 lista->InsertarInicio();
                 break;
             case 'b':
+            case 'B':
                 lista->InsertarFinal();
                 break;
             case 'c':
+            case 'C':
                 cout<<"ELija un indice>> ";
                 cin>>index;
-                lista->InsertarMedio(index);
+                if(!i_input(index))
+                    index="-1";
+                lista->InsertarMedio(stoi(index));
                 break;
             default:
                 cout<<"Opcion invalida"<<endl;
@@ -65,11 +75,15 @@ void opciones(int opc){
         cout << "ELIMINAR NUMERO" << endl << endl;
         cout << "Ingrese el numero a eliminar>>>";
         cin >> numSearch;
-        confirmation = lista->RemoverMedio(lista->BuscarIndice(numSearch));
-        if(confirmation)
-            cout << "Elemento removido con exito" << endl;
-        else
-            cout << "No fue posible remover el elemento debido a que no existe en la lista" << endl;
+        if(!i_input(numSearch))
+            cout<<"Ingrese numeros solamente"<<endl;
+        else{
+            confirmation = lista->RemoverMedio(lista->BuscarIndice(stoi(numSearch)));
+            if(confirmation)
+                cout << "Elemento removido con exito" << endl;
+            else
+                cout << "No fue posible remover el elemento debido a que no existe en la lista" << endl;
+        }
         system("pause");
         break;
     case 3:
@@ -87,11 +101,15 @@ void opciones(int opc){
         cout << "BUSCAR NUMERO" << endl << endl;
         cout << "Inngrese el numero a buscar>>>";
         cin >> numSearch;
-        index = lista->BuscarIndice(numSearch);
-        if(index!=-1)
-            cout<<numSearch<<" encontrado en el indice " << index << endl;
-        else
-            cout<<"Numero no encontrado en la lista..." << endl;
+        if(!i_input(numSearch))
+            cout<<"Ingrese numeros solamente"<<endl;
+        else{
+            int_index = lista->BuscarIndice(stoi(numSearch));
+            if(int_index!=-1)
+                cout<<numSearch<<" encontrado en el indice " << int_index << endl;
+            else
+                cout<<"Numero no encontrado en la lista..." << endl;
+        }
         system("pause");
         break;
     
