@@ -185,23 +185,14 @@ void ListaEnlazada<T>::Eliminar(int indice){
 
 template <typename T>
 void ListaEnlazada<T>::Invertir(){
-    Nodo<T>* Cola = Cabecera;
 
-    for(int i=1;i<contador;i++)
-        Cola = Cola->siguiente;
-    
-    Nodo<T>* aux = Cola;
+    Contacto<T> contactos[];
 
-    for(int i=contador-1;i>0;i--){
-        Nodo<T>* next=Cabecera;
-
-        for(int j=1;j<i;j++)
-            next = next->siguiente;
-        
-        aux->siguiente=next;
-        aux=next;
+    while(begin!=NULL)
+        aux = begin->c;
+        begin->c = last->c;
+        begin = begin->siguiente;
     }
-    Cabecera = Cola;
 }
 
 template <typename T>
