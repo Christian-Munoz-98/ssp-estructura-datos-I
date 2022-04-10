@@ -20,7 +20,7 @@ public:
     void EliminarPrimero();
     void EliminarUltimo();
     void EditarCancion();
-    //void InvertirLista();
+    void InvertirLista();
     void ImprimirLista();
     bool IsEmpty();
 };
@@ -72,13 +72,19 @@ void Lista::Anterior(){
 
 void Lista::EliminarActual(){
     if(!IsEmpty()){
-        Nodo* anterior = actual->anterior;
-        anterior->siguiente = actual->siguiente;
-		actual->siguiente->anterior = anterior;
-        Nodo* aux = actual;
-        actual = actual->siguiente;
-        delete  aux;
-        count--;
+        if(actual==head)
+            EliminarPrimero();
+        else if(actual==tail)
+            EliminarUltimo();
+        else{
+            Nodo* eliminar = actual;
+            Nodo* anterior = actual->anterior;
+            actual = actual->siguiente;
+            anterior->siguiente = eliminar->siguiente;
+            eliminar->siguiente->anterior = anterior;
+            delete  eliminar;
+            count--;
+        }
     }
     else{
         EmptyMessage();
@@ -128,8 +134,8 @@ void Lista::EditarCancion(){
 		EmptyMessage();
 }
 
-/*void Lista::InvertirLista(){
-    if (head!=NULL){
+void Lista::InvertirLista(){
+    if (!IsEmpty()){
         Nodo* begin = head;
         Nodo* end = tail;
         Cancion* low_song = head->cancion;
@@ -146,7 +152,7 @@ void Lista::EditarCancion(){
     else{
         cout<< "\n La lista se Encuentra Vacia\n\n";
     }
-}*/
+}
 
 void Lista::ImprimirLista(){
 	Nodo* nodo = head;

@@ -60,7 +60,7 @@ int main(){
 			break;
 		case 8:
 			cout << "\n\n INVERTIR LISTA \n\n";
-			//lista->InvertirLista();
+			lista->InvertirLista();
 			system("pause");
 			break;
 		case 9:
