@@ -1,5 +1,9 @@
 #include "Nodo.h"
 
+void EmptyMessage(){
+    cout<<"\n La lista se Encuentra Vacia\n\n";
+}
+
 class Lista{
 public:
     Nodo* head;
@@ -18,6 +22,7 @@ public:
     void EditarCancion();
     //void InvertirLista();
     void ImprimirLista();
+    bool IsEmpty();
 };
 
 Lista::Lista(){
@@ -31,7 +36,7 @@ Lista::~Lista(){}
 void Lista::Agregar(){
     Nodo* nuevo = new Nodo();
 
-    if (head==NULL){
+    if (IsEmpty()){
         head = nuevo;
         tail = nuevo;
         head->siguiente = head;
@@ -52,16 +57,22 @@ void Lista::Agregar(){
 }
 
 void Lista::Siguiente(){
-    actual = actual->siguiente;
+    if (!IsEmpty())
+        actual = actual->siguiente;
+    else
+        EmptyMessage();
 }
 
 void Lista::Anterior(){
-    actual = actual->anterior;
+    if (!IsEmpty())
+        actual = actual->anterior;
+    else
+        EmptyMessage();
 }
 
 void Lista::EliminarActual(){
-    Nodo* anterior = actual->anterior;
-    if(head!=NULL){
+    if(!IsEmpty()){
+        Nodo* anterior = actual->anterior;
         anterior->siguiente = actual->siguiente;
 		actual->siguiente->anterior = anterior;
         Nodo* aux = actual;
@@ -70,12 +81,17 @@ void Lista::EliminarActual(){
         count--;
     }
     else{
-        cout<<"\n La lista se Encuentra Vacia\n\n";
+        EmptyMessage();
     }
 }
 
 void Lista::EliminarPrimero(){
-    if (head!=NULL){
+    if (!IsEmpty()){
+
+        if (actual==head){
+            actual = actual->siguiente;
+        }
+        
         Nodo* aux = head;
 		head = head->siguiente;
 		head->anterior = tail;
@@ -84,12 +100,15 @@ void Lista::EliminarPrimero(){
         count--;
     }
     else{
-        cout<< "\n La lista se Encuentra Vacia\n\n";
+        EmptyMessage();
     }
 }
 
 void Lista::EliminarUltimo(){
-    if (head!=NULL){
+    if (!IsEmpty()){
+        if (actual==tail){
+            actual = actual->siguiente;
+        }
         Nodo* aux = tail;
 		tail = tail->anterior;
 		tail->siguiente = head;
@@ -98,15 +117,15 @@ void Lista::EliminarUltimo(){
         count--;
     }
     else{
-        cout<< "\n La lista se Encuentra Vacia\n\n";
+        EmptyMessage();
     }
 }
 
 void Lista::EditarCancion(){
-	if(head!=NULL)
+	if(!IsEmpty())
         actual->Modificar();
     else
-		cout << "\n La lista se Encuentra Vacia\n\n";
+		EmptyMessage();
 }
 
 /*void Lista::InvertirLista(){
@@ -131,17 +150,19 @@ void Lista::EditarCancion(){
 
 void Lista::ImprimirLista(){
 	Nodo* nodo = head;
-	if(head!=NULL){
+	if(!IsEmpty()){
 		do{
             nodo->Mostrar();
 			nodo = nodo->siguiente;
 		}while(nodo!=head);	
 	}
     else{
-		cout << "\n La lista se Encuentra Vacia\n\n";
+		EmptyMessage();
 	}
 }
 
-
+bool Lista::IsEmpty(){
+    return count == 0;
+}
 
 

@@ -42,11 +42,12 @@ Nodo::~Nodo(){
 
 void Nodo::Modificar(){
     int opc;
-    cout<<"Modificicar..."<<endl
+    cout<<"Indique que desea modificicar..."<<endl
     <<"1.-Titulo"<<endl
     <<"2.-Album"<<endl
     <<"3.-Artista"<<endl
-    <<"4.-Genero"<<endl;
+    <<"4.-Genero"<<endl
+    <<">>> ";
     cin>>opc;
     switch(opc){
         case 1:
