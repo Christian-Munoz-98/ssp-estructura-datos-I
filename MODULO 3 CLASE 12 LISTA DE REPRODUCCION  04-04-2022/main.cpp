@@ -1,6 +1,70 @@
 #include "Lista.h"
+#include <fstream>
+/*
+int Database(){
+	Cancion* playlist[29];
+    ifstream myFile;
+    myFile.open("_songs.csv");
+    int flag=1;
+    int index=0;
+    int id=1;
+    while (myFile.good())
+    {
+        string line;
+        getline(myFile, line,',');
 
+        switch (flag)
+        {
+            case 1:
+                playlist[index]->id = id;
+                playlist[index]->titulo = line;
+                flag++;
+                break;
+            case 2:
+                playlist[index]->artista = line;
+                flag++;
+                break;
+            case 3:
+                playlist[index]->genero = line;
+                flag=1;
+                index++;
+                id++;
+                break;
+            }
+    }
+}
+*/
 int main(){
+	Cancion playlist[29];
+    ifstream myFile;
+    myFile.open("_songs.csv");
+    int flag=1;
+    int index=0;
+    int id=1;
+    while (myFile.good())
+    {
+        string line;
+        getline(myFile, line,',');
+
+        switch (flag)
+        {
+            case 1:
+                playlist[index].id = id;
+                playlist[index].titulo = line;
+                flag++;
+                break;
+            case 2:
+                playlist[index].artista = line;
+                flag++;
+                break;
+            case 3:
+                playlist[index].genero = line;
+                flag=1;
+                index++;
+                id++;
+                break;
+            }
+    }
     Lista* lista = new Lista();
 	int opcion_menu=0;
 	do
@@ -25,8 +89,17 @@ int main(){
 		cin >> opcion_menu;
 		switch(opcion_menu){
 		case 1:
+			int id;
 			cout << "\n\n AGREGA CANCON A LA LISTA \n\n";
-			lista->Agregar();
+			cout<<"CANCIONES DISPONIBLES"<<endl;
+			for (int i = 0; i < 29; i++){
+				cout<<"----------"<<endl
+				<<"ID: " << playlist[i].id<<endl
+				<<"Titulo: "<<playlist[i].titulo<<endl;
+			}
+			cout<<"Indique el id de la cancion a agregar"<<endl;
+			cin>>id;
+			lista->Agregar(playlist[id-1]);
 			break;
 		case 2:
 			cout << "\n\n SIGUIENTE CANCION\n\n";

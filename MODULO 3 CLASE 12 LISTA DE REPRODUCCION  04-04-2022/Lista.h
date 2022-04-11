@@ -13,7 +13,7 @@ public:
 
     Lista();
     ~Lista();
-    void Agregar();
+    void Agregar(Cancion);
     void Siguiente();
     void Anterior();
     void EliminarActual();
@@ -33,8 +33,8 @@ Lista::Lista(){
 
 Lista::~Lista(){}
 
-void Lista::Agregar(){
-    Nodo* nuevo = new Nodo();
+void Lista::Agregar(Cancion c){
+    Nodo* nuevo = new Nodo(c);
 
     if (IsEmpty()){
         head = nuevo;
@@ -138,8 +138,8 @@ void Lista::InvertirLista(){
     if (!IsEmpty()){
         Nodo* begin = head;
         Nodo* end = tail;
-        Cancion* low_song = head->cancion;
-        Cancion* high_song = tail->cancion;
+        Cancion low_song = head->cancion;
+        Cancion high_song = tail->cancion;
         for(int i = count/2;i>=1;i--){
             begin->cancion = high_song;
             end->cancion = low_song;
