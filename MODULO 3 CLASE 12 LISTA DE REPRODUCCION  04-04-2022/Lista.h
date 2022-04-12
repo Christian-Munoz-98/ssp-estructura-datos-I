@@ -1,4 +1,5 @@
 #include "Nodo.h"
+#include <windows.h>
 
 void EmptyMessage(){
     cout<<"\n La lista se Encuentra Vacia\n\n";
@@ -19,8 +20,6 @@ public:
     void EliminarActual();
     void EliminarPrimero();
     void EliminarUltimo();
-    void EditarCancion();
-    void InvertirLista();
     void ImprimirLista();
     bool IsEmpty();
 };
@@ -127,39 +126,15 @@ void Lista::EliminarUltimo(){
     }
 }
 
-void Lista::EditarCancion(){
-	if(!IsEmpty())
-        actual->Modificar();
-    else
-		EmptyMessage();
-}
-
-void Lista::InvertirLista(){
-    if (!IsEmpty()){
-        Nodo* begin = head;
-        Nodo* end = tail;
-        Cancion low_song = head->cancion;
-        Cancion high_song = tail->cancion;
-        for(int i = count/2;i>=1;i--){
-            begin->cancion = high_song;
-            end->cancion = low_song;
-            begin = begin->siguiente;
-            end = end->anterior;
-            low_song = begin->cancion;
-            high_song = end->cancion;
-        }
-    }
-    else{
-        cout<< "\n La lista se Encuentra Vacia\n\n";
-    }
-}
-
 void Lista::ImprimirLista(){
 	Nodo* nodo = head;
+    int x=45,y=5;
+    gotoxy(45,4);cout<<"COLA DE REPRODUCCION";
 	if(!IsEmpty()){
 		do{
-            nodo->Mostrar();
+            nodo->Mostrar(x,y);
 			nodo = nodo->siguiente;
+            y+=4;
 		}while(nodo!=head);	
 	}
     else{
@@ -170,5 +145,4 @@ void Lista::ImprimirLista(){
 bool Lista::IsEmpty(){
     return count == 0;
 }
-
 
