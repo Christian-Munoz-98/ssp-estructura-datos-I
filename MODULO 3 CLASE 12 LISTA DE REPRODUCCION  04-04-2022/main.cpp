@@ -1,41 +1,11 @@
 #include "Lista.h"
 #include <fstream>
-/*
-int Database(){
-	Cancion* playlist[29];
-    ifstream myFile;
-    myFile.open("_songs.csv");
-    int flag=1;
-    int index=0;
-    int id=1;
-    while (myFile.good())
-    {
-        string line;
-        getline(myFile, line,',');
+#include <windows.h>
 
-        switch (flag)
-        {
-            case 1:
-                playlist[index]->id = id;
-                playlist[index]->titulo = line;
-                flag++;
-                break;
-            case 2:
-                playlist[index]->artista = line;
-                flag++;
-                break;
-            case 3:
-                playlist[index]->genero = line;
-                flag=1;
-                index++;
-                id++;
-                break;
-            }
-    }
-}
-*/
+void PlaySong(string);
+
 int main(){
-	Cancion playlist[29];
+	Cancion playlist[30];
     ifstream myFile;
     myFile.open("_songs.csv");
     int flag=1;
@@ -65,14 +35,27 @@ int main(){
                 break;
             }
     }
+	ifstream myFileR;
+    myFileR.open("_roots.csv");
+    index=0;
+    while (myFileR.good())
+    {
+        string line;
+        getline(myFileR, line,',');
+
+        playlist[index].ruta = line;
+        index++;
+    }
     Lista* lista = new Lista();
 	int opcion_menu=0;
 	do
 	{
 		system("cls");
 		cout<<"-----Reproduciendo------"<<endl;
-		if(lista->count!=0)
+		if(lista->count!=0){
 			lista->actual->Mostrar();
+			PlaySong(lista->actual->cancion.ruta);
+		}
 		else
 			cout<<"\nNo hay canciones disponibles\n";
 
@@ -152,4 +135,9 @@ int main(){
 	} while (opcion_menu != 10);
 	
 	return 0;
+}
+
+void PlaySong(string song_s){
+	const char* song = song_s.c_str();
+	cout<<PlaySound(song,NULL,SND_ASYNC);
 }

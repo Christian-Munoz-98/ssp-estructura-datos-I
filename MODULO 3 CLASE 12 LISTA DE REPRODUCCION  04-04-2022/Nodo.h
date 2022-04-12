@@ -7,6 +7,7 @@ struct Cancion{
     string titulo;
     string artista;
     string genero;
+    string ruta;
 };
 
 class Nodo{
@@ -66,5 +67,6 @@ void Nodo::Mostrar(){
     <<"Titulo: " <<cancion.titulo<< endl
     <<"Artista: " <<cancion.artista << endl
     <<"Genero: " <<cancion.genero << endl
+    <<"Ruta: "<<cancion.ruta<<endl
     <<"-------------" <<endl;
 }
