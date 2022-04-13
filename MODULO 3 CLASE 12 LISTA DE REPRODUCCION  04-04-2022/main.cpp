@@ -53,27 +53,25 @@ int main(){
 	int opcion_menu=0;
 	do{
 		system("cls");
-		cout<<"-----Reproduciendo------"<<endl;
 		if(lista->count!=0){
-			lista->actual->Mostrar(0,2);
 			PlaySong(lista->actual->cancion.ruta);
 			lista->ImprimirLista();
 		}
 		else
 			cout<<"\nNo hay canciones disponibles\n";
 
-		cout << "\n|-------------------------------------|";
-		cout << "\n|               ROCKOLA               |";
-		cout << "\n|------------------|------------------|";
-		cout << "\n|1.Agregar cancion |5.Eliminar primera|";
-		cout << "\n|2.Siguiente       |6.Eliminar ultima |";
-		cout << "\n|3.Anterior        |7.Mostrar lista   |";
-		cout << "\n|4.Eliminar actual |8.Salir           |";
-		cout << "\n|------------------|------------------|";
-		cout << "\n\n Escoja una Opcion: ";
+		gotoxy(0,0);cout << "\n|-------------------------------------|";
+		gotoxy(0,1);cout << "\n|               ROCKOLA               |";
+		gotoxy(0,2);cout << "\n|------------------|------------------|";
+		gotoxy(0,3);cout << "\n|1.Agregar cancion |5.Eliminar primera|";
+		gotoxy(0,4);cout << "\n|2.Siguiente       |6.Eliminar ultima |";
+		gotoxy(0,5);cout << "\n|3.Anterior        |7.Salir           |";
+		gotoxy(0,6);cout << "\n|4.Eliminar actual |                  |";
+		gotoxy(0,7);cout << "\n|------------------|------------------|";
+		gotoxy(0,8);cout << "\n\n Escoja una Opcion: ";
 		cin >> opcion_menu;
 		int x=0;
-		int y=20;
+		int y=12;
 		switch(opcion_menu){
 		case 1:
 			int id;
@@ -82,7 +80,7 @@ int main(){
 			for(int i = 0; i < 30; i++){
 				gotoxy(x,y);cout<<"[" << playlist[i].id<<"]  "<<playlist[i].titulo;
 				x+=30;
-				if((i+1)%5==0&&(i!=0)){
+				if((i+1)%2==0&&(i!=0)){
 					x=0;
 					y+=1;
 				}
@@ -107,10 +105,6 @@ int main(){
 			lista->EliminarUltimo();
 			break;
 		case 7:
-			lista->ImprimirLista();
-			system("pause");
-			break;
-		case 8:
 			cout<<"\n\n SALIENDO... \n\n";
 			break;
 		default:
@@ -118,7 +112,7 @@ int main(){
 			system("pause");
 			break;
 		}
-	} while (opcion_menu != 8);
+	} while (opcion_menu != 7);
 	
 	return 0;
 }

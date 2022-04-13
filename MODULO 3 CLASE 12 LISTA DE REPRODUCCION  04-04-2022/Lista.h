@@ -33,7 +33,7 @@ Lista::Lista(){
 Lista::~Lista(){}
 
 void Lista::Agregar(Cancion c){
-    Nodo* nuevo = new Nodo(c);
+    Nodo* nuevo = new Nodo(c,count);
 
     if (IsEmpty()){
         head = nuevo;
@@ -128,13 +128,28 @@ void Lista::EliminarUltimo(){
 
 void Lista::ImprimirLista(){
 	Nodo* nodo = head;
-    int x=45,y=5;
-    gotoxy(45,4);cout<<"COLA DE REPRODUCCION";
+    string titulo;
+    int x=55,y=1;
+    int cursor=1;
+    gotoxy(55,0);cout<<"COLA DE REPRODUCCION";
 	if(!IsEmpty()){
+        while (nodo!=actual)
+        {
+            nodo = nodo->siguiente;
+            cursor++;
+        }
+        nodo = head;
 		do{
             nodo->Mostrar(x,y);
 			nodo = nodo->siguiente;
-            y+=4;
+            if (nodo==actual){
+                gotoxy(83,5*cursor-3);cout<<"<<<<<<<";
+                gotoxy(83,5*cursor-3+1);cout<<"<<<<<<<";
+                gotoxy(83,5*cursor-3+2);cout<<"<<<<<<<";
+            }
+            y+=5;
+
+            
 		}while(nodo!=head);	
 	}
     else{

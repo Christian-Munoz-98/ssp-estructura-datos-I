@@ -15,19 +15,21 @@ struct Cancion{
 
 class Nodo{
 public:
+    int id;
     Cancion cancion;
     Nodo* siguiente;
     Nodo* anterior;
-    Nodo(Cancion);
+    Nodo(Cancion,int);
     ~Nodo();
     void Modificar();
     void Mostrar(int,int);
 };
 
-Nodo::Nodo(Cancion c){
+Nodo::Nodo(Cancion c,int id_){
     cancion = c;
     siguiente = NULL;
     anterior = NULL;
+    id = id_;
 }
 
 Nodo::~Nodo(){
@@ -35,10 +37,11 @@ Nodo::~Nodo(){
 }
 
 void Nodo::Mostrar(int x,int y){
-    gotoxy(x,y);cout <<"Titulo: " <<cancion.titulo<< endl;
-    gotoxy(x,y+1);cout<<"Artista: " <<cancion.artista << endl;
-    gotoxy(x,y+2);cout<<"Genero: " <<cancion.genero << endl;
-    gotoxy(x,y+3);cout<<"------------------------" <<endl;
+    gotoxy(x,y);cout<<"------------------------" <<endl;
+    gotoxy(x,y+1);cout <<"Titulo: " <<cancion.titulo<< endl;
+    gotoxy(x,y+2);cout<<"Artista: " <<cancion.artista << endl;
+    gotoxy(x,y+3);cout<<"Genero: " <<cancion.genero << endl;
+    gotoxy(x,y+4);cout<<"------------------------" <<endl;
 }
 
 void gotoxy(int x,int y){  
