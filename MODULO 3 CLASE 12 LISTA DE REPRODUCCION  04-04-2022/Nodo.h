@@ -44,6 +44,16 @@ void Nodo::Mostrar(int x,int y){
     gotoxy(x,y+4);cout<<"------------------------" <<endl;
 }
 
+void Nodo::Modificar(){
+    cout<<"Ingrese titulo: ";
+    cin>>cancion.titulo;
+    cout<<"Ingrese artista: ";
+    cin>>cancion.artista;
+    cout<<"Ingrese genero: ";
+    cin>>cancion.genero;
+
+}
+
 void gotoxy(int x,int y){  
     HANDLE hcon;  
     hcon = GetStdHandle(STD_OUTPUT_HANDLE);  

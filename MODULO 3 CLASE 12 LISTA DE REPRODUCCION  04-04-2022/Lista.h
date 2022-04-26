@@ -2,7 +2,8 @@
 #include <windows.h>
 
 void EmptyMessage(){
-    cout<<"\n La lista se Encuentra Vacia\n\n";
+    cout<<"..........."<<endl;
+    Sleep(500);
 }
 
 class Lista{
@@ -18,6 +19,7 @@ public:
     void Siguiente();
     void Anterior();
     void EliminarActual();
+    void Modificar();
     void EliminarPrimero();
     void EliminarUltimo();
     void ImprimirLista();
@@ -58,15 +60,17 @@ void Lista::Agregar(Cancion c){
 void Lista::Siguiente(){
     if (!IsEmpty())
         actual = actual->siguiente;
-    else
+    else{
         EmptyMessage();
+	}
 }
 
 void Lista::Anterior(){
     if (!IsEmpty())
         actual = actual->anterior;
-    else
-        EmptyMessage();
+    else{
+    	EmptyMessage();
+	}
 }
 
 void Lista::EliminarActual(){
@@ -86,7 +90,7 @@ void Lista::EliminarActual(){
         }
     }
     else{
-        EmptyMessage();
+    	EmptyMessage();
     }
 }
 
@@ -105,7 +109,7 @@ void Lista::EliminarPrimero(){
         count--;
     }
     else{
-        EmptyMessage();
+    	EmptyMessage();
     }
 }
 
@@ -148,12 +152,10 @@ void Lista::ImprimirLista(){
                 gotoxy(83,5*cursor-3+2);cout<<"<<<<<<<";
             }
             y+=5;
-
-            
 		}while(nodo!=head);	
 	}
     else{
-		EmptyMessage();
+    	EmptyMessage();
 	}
 }
 
@@ -161,3 +163,6 @@ bool Lista::IsEmpty(){
     return count == 0;
 }
 
+void Lista::Modificar(){
+    actual->Modificar();
+}
