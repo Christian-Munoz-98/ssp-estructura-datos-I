@@ -34,11 +34,11 @@ Node::Node(int id){
 void Node::edit(){
         bool retry;
         do{
+            if(retry)
+                system("cls");
             retry =false;
             string change;
             string election;
-            system("pause");
-            system("cls");
             cout<<"Seleccione que desea editar:\n"<<
             "1)Nombre\n"<<
             "2)Direccion\n"<<
