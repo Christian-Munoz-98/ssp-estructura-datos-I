@@ -1,6 +1,8 @@
 #include <iostream>
-
+#include <windows.h>
 using namespace std;
+
+bool i_input(string);
 
 class Node{
 public:
@@ -34,33 +36,46 @@ void Node::edit(){
         do{
             retry =false;
             string change;
-            int election;
+            string election;
+            system("pause");
+            system("cls");
             cout<<"Seleccione que desea editar:\n"<<
             "1)Nombre\n"<<
             "2)Direccion\n"<<
             "3)Email\n";
+            cout<<"Indique opcion >> ";
             cin>>election;
-            switch (election){
-                case 1:
-                    cout<<"Ingrese nuevo nombre: ";
-                    cin>>name;
-                    break;
-                
-                case 2:
-                    cout<<"Ingrese nueva Direccion: ";
-                    cin>>direction;
-                    break;
-                
-                case 3:
-                    cout<<"Ingrese nuevo Email: ";
-                    cin>>email;
-                    break;
-            
-            default:
-                cout<<"Ingrese una opcion valida"<<endl;
+            if (!i_input(election)){
+                cout<<"Ingrese opcion valida"<<endl;
+                Sleep(1000);
                 retry = true;
-                break;
-
+            }
+            else{
+                switch (stoi(election)){
+                    case 1:
+                        cout<<"Ingrese nuevo nombre: ";
+                        cin>>name;
+                        system("pause");
+                        break;
+                    
+                    case 2:
+                        cout<<"Ingrese nueva Direccion: ";
+                        cin>>direction;
+                        system("pause");
+                        break;
+                    
+                    case 3:
+                        cout<<"Ingrese nuevo Email: ";
+                        cin>>email;
+                        system("pause");
+                        break;
+                
+                default:
+                    cout<<"Ingrese opcion valida"<<endl;
+                    Sleep(1000);
+                    retry = true;
+                    break;
+                }
             }
         }while(retry);
 }
@@ -72,6 +87,16 @@ void Node::show(){
     <<"Direccion: "<<direction<<endl
     <<"Email: "<<email<<endl;
     cout<<"---------------"<<endl;
+}
+
+bool i_input(string input){
+    int length = input.length();
+    for(int i=0; i<length;i++){
+        if(!isdigit(input[i])){
+            return false;
+        }
+    }
+    return true;
 }
 
 

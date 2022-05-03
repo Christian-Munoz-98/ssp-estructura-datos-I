@@ -1,4 +1,5 @@
 #include "Node.h"
+
 class Btree{
 public:
     Node* root;
@@ -100,13 +101,13 @@ void Btree::searchName(Node* leaf,string name){
             Node* pre = NULL, *suc = NULL;
             findPredSuc(root,pre,suc,leaf->id);
             if (pre != NULL)
-                cout << "Predecessor is " << pre->name << endl;
+                cout << "El predecesor es " << pre->name << endl;
             else
-                cout << "No Predecessor"<<endl; 
+                cout << "No hay predecesor"<<endl; 
             if (suc != NULL)
-                cout << "Successor is " << suc->name;
+                cout << "El succesor es " << suc->name<<endl;
             else
-                cout << "No Successor"<<endl;
+                cout << "No hay succesor"<<endl;
             return;
         }
         searchName(leaf->left,name);
@@ -115,19 +116,33 @@ void Btree::searchName(Node* leaf,string name){
 }
 
 Node* Btree::min(){
-    Node* min = root;
-    while (min->left!=NULL){
-        min = min->left;
+
+    if(root){
+
+        Node* min = root;
+        while (min->left!=NULL){
+            min = min->left;
+        }
+        return min;
     }
-    return min;
+    else
+        return NULL;
+
 }
 
 Node* Btree::max(){
-    Node* max = root;
-    while (max->right!=NULL){
-        max = max->right;
+    if (root){
+
+        Node* max = root;
+        while (max->right!=NULL){
+            max = max->right;
+        }
+        return max;
     }
-    return max;
+    else
+        return NULL;
+
+    
     
 }
 
@@ -216,8 +231,15 @@ Node* Btree::deleteNode(Node* root, int id){
 }
 
 void Btree::inOrderPrintRoot(){
-    inOrderPrint(root);
-    cout << "\n";
+    
+    if (root){
+        inOrderPrint(root);
+        cout << "\n";
+    }
+    else
+        cout<<"Arbol vacio"<<endl;
+    
+
 }
 
 void Btree::inOrderPrint(Node* leaf){
@@ -229,8 +251,13 @@ void Btree::inOrderPrint(Node* leaf){
 }
 
 void Btree::preOrderPrintRoot(){
-    preOrderPrint(root);
-    cout<<"\n";
+    if (root){
+        preOrderPrint(root);
+        cout<<"\n";        
+    }
+    else
+        cout<<"Arbol vacio"<<endl;
+
 }
 
 void Btree::preOrderPrint(Node* leaf){
@@ -243,11 +270,18 @@ void Btree::preOrderPrint(Node* leaf){
 }
 
 void Btree::postOrderPrintRoot(){
-    postOrderPrint(root);
-    cout<<"\n";
+
+    if (root){
+        postOrderPrint(root);
+        cout<<"\n";
+    }
+    else
+        cout<<"Arbol vacio"<<endl;
+
 }
 
 void Btree::postOrderPrint(Node* leaf){
+    
     if (leaf != NULL){
         inOrderPrint(leaf->left);
         inOrderPrint(leaf->right);
