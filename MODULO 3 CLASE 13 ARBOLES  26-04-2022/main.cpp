@@ -66,5 +66,30 @@ int main(){
     cin>>nombre;
     tree->searchNameRoot(nombre);
     system("pause");
+
+    printf("Inorder traversal of the given tree \n");
+    tree->inOrderPrintRoot();
+ 
+    system("cls");
+    printf("\nDelete 7\n");
+    tree->root = tree->deleteNode(tree->root,7);
+    printf("Inorder traversal of the modified tree \n");
+    tree->inOrderPrintRoot();
+    system("pause");
+ 
+    system("cls");
+    printf("\nDelete 30\n");
+    tree->root = tree->deleteNode(tree->root,20);
+    printf("Inorder traversal of the modified tree \n");
+    tree->inOrderPrintRoot();
+    system("pause");
+ 
+    system("cls");
+    printf("\nDelete 50\n");
+    tree->root = tree->deleteNode(tree->root,5);
+    printf("Inorder traversal of the modified tree \n");
+    tree->inOrderPrintRoot();
+    system("pause");
+    
     return 0;
 }

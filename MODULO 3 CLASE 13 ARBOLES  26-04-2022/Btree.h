@@ -1,19 +1,4 @@
 #include "Node.h"
-/*
--1) Insertar Datos
--2) Buscar Nodo
--a) Por ID
-b) Por Nombre
--3) Mostrar Mínimo ID (Nodo)
--4) Mostrar Máximo ID (Nodo)
--5) Mostrar Nodo Antecesor
--6) Mostrar Nodo Sucesor
--7) Editar Nodo (por ID)
-8) Eliminar Nodo(Por ID)
--9) Mostrar Datos en Orden
--10) Mostrar Datos en PreOrden
--11) Mostrar Datos en PostOrden
-*/
 class Btree{
 public:
     Node* root;
@@ -36,6 +21,8 @@ public:
     void findPredSuc(Node*,Node*&, Node*&,int);
 
     void edit(Node*);
+
+    Node* deleteNode(Node*,int);
 
     void inOrderPrintRoot();
     void inOrderPrint(Node*);
@@ -110,6 +97,16 @@ void Btree::searchName(Node* leaf,string name){
     if (leaf!=NULL){
         if (leaf->name==name){
             leaf->show();
+            Node* pre = NULL, *suc = NULL;
+            findPredSuc(root,pre,suc,leaf->id);
+            if (pre != NULL)
+                cout << "Predecessor is " << pre->name << endl;
+            else
+                cout << "No Predecessor"<<endl; 
+            if (suc != NULL)
+                cout << "Successor is " << suc->name;
+            else
+                cout << "No Successor"<<endl;
             return;
         }
         searchName(leaf->left,name);
@@ -167,6 +164,55 @@ void Btree::findPredSuc(Node* begin, Node*& pre, Node*& suc, int id){
 
 void Btree::edit(Node* leaf){
     leaf->edit();
+}
+
+Node* Btree::deleteNode(Node* root, int id){
+    if (root == NULL)
+        return root;
+ 
+    if (root->id > id) {
+        root->left = deleteNode(root->left, id);
+        return root;
+    }
+    else if (root->id < id) {
+        root->right = deleteNode(root->right, id);
+        return root;
+    }
+ 
+    if (root->left == NULL) {
+        Node* temp = root->right;
+        delete root;
+        return temp;
+    }
+    else if (root->right == NULL) {
+        Node* temp = root->left;
+        delete root;
+        return temp;
+    }
+ 
+    else {
+ 
+        Node* succParent = root;
+ 
+        Node* succ = root->right;
+        while (succ->left != NULL) {
+            succParent = succ;
+            succ = succ->left;
+        }
+ 
+        if (succParent != root)
+            succParent->left = succ->right;
+        else
+            succParent->right = succ->right;
+ 
+        root->id = succ->id;
+        root->name = succ->name;
+        root->direction = succ->direction;
+        root->email = succ->email;
+ 
+        delete succ;
+        return root;
+    }
 }
 
 void Btree::inOrderPrintRoot(){
